@@ -1,8 +1,8 @@
-<div>
-  <div><h1>Registrar Usuario</h1></div>
+<div class="container">
+  <div class="form-header"><h1>Registrar Usuario</h1></div>
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
-      <mat-form-field>
+      <mat-form-field >
         <mat-label>Nombres</mat-label>
         <input matInput placeholder="Ejem. Greicy" formControlName="unombres" />
 
@@ -87,7 +87,7 @@
         </mat-error>
       </mat-form-field>
       <br />
-      <button mat-flat-button>Registrar</button>
+      <button mat-flat-button class="submit-btn">Registrar</button>
     </form>
   </div>
 </div>
