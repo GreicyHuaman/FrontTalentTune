@@ -1,1 +1,22 @@
-<app-usuario></app-usuario>
+<mat-toolbar color="primary">
+    <span>Menú Principal</span>
+    <span class="spacer"></span>
+  
+    <button mat-button [matMenuTriggerFor]="menuBanda">Bandas</button>
+    <button mat-button [matMenuTriggerFor]="menuCategoria">Categorías</button>
+    <button mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+  </mat-toolbar>
+  
+  <mat-menu #menuBanda="matMenu">
+    <button mat-menu-item [routerLink]="['/bandas/listar']">Listar Bandas</button>
+  </mat-menu>
+  
+  <mat-menu #menuCategoria="matMenu">
+    <button mat-menu-item [routerLink]="['/categorias/listar']">Listar Categorías</button>
+  </mat-menu>
+
+  <mat-menu #menuUsuario="matMenu">
+    <button mat-menu-item [routerLink]="['/usuarios/listar']">Listar Usuarios</button>
+  </mat-menu>
+  
+  <router-outlet></router-outlet>
