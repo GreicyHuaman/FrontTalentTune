@@ -1,21 +1,93 @@
 <div>
   <div><h1>Registrar Usuario</h1></div>
   <div>
-    <mat-form-field>
-      <mat-label>Nombres</mat-label>
-      <input matInput />
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label>Sexo</mat-label>
-      <mat-select>
-        <mat-option value="one">Femenino</mat-option>
-        <mat-option value="two">Masculino</mat-option>
-      </mat-select>
-    </mat-form-field><br>
-    <mat-form-field>
-      <mat-label>Descripcion</mat-label>
-      <textarea matInput></textarea>
-    </mat-form-field><br>
-    <button mat-flat-button>Registrar</button>
+    <form [formGroup]="form" (submit)="aceptar()">
+      <mat-form-field>
+        <mat-label>Nombres</mat-label>
+        <input matInput placeholder="Ejem. Greicy" formControlName="unombres" />
+
+        <mat-error *ngIf="form.get('unombres')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field>
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="ufechaNacimiento"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <br>
+        <mat-error *ngIf="form.get('ufechaNacimiento')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field>
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="udescripcion"></textarea>
+        <mat-error *ngIf="form.get('udescripcion')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field>
+        <mat-label>Pais</mat-label>
+        <input matInput placeholder="Ejem. Peru" formControlName="upais" />
+
+        <mat-error *ngIf="form.get('upais')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field>
+        <mat-label>Agencia</mat-label>
+        <input matInput formControlName="uagencia" />
+        <mat-error *ngIf="form.get('uagencia')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <br>
+
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+        <mat-select formControlName="usexo">
+          @for (food of listaGeneros; track food) {
+          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+          }
+        </mat-select>
+        <mat-error *ngIf="form.get('usexo')?.hasError('required')">
+          Seleccione una opción
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field>
+        <mat-label>Estudios</mat-label>
+        <input matInput placeholder="Ejem. Universidad" formControlName="uestudios" />
+
+        <mat-error *ngIf="form.get('uestudios')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <br />
+      <button mat-flat-button>Registrar</button>
+    </form>
   </div>
 </div>
