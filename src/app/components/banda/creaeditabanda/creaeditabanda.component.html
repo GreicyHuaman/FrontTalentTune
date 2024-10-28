@@ -1,0 +1,29 @@
+<div>
+    <h1>Registro de Bandas</h1>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>Código</mat-label>
+                <input matInput placeholder="Ejem. Kiss" formControlName="hcodigo" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre de la Banda</mat-label>
+                <input matInput placeholder="Ejem. Kiss" formControlName="hbandas" />
+            </mat-form-field>
+            
+            <br />
+
+            <mat-form-field>
+                <mat-label>Fecha de Creación</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="hfecha">
+                <mat-hint>MM/DD/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>              
+
+            <button mat-flat-button >Registrar</button>
+                
+        </form>
+    </div>
+</div>
