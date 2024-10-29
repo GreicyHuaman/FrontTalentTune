@@ -1,22 +1,40 @@
 <mat-toolbar color="primary">
-    <span>Menú Principal</span>
-    <span class="spacer"></span>
-  
-    <button mat-button [matMenuTriggerFor]="menuBanda">Bandas</button>
-    <button mat-button [matMenuTriggerFor]="menuCategoria">Categorías</button>
-    <button mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
-  </mat-toolbar>
-  
-  <mat-menu #menuBanda="matMenu">
-    <button mat-menu-item [routerLink]="['/bandas/listar']">Listar Bandas</button>
-  </mat-menu>
-  
-  <mat-menu #menuCategoria="matMenu">
-    <button mat-menu-item [routerLink]="['/categorias/listar']">Listar Categorías</button>
-  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="menuPrincipal">
+      <mat-icon>menu</mat-icon> Menú Principal
+  </button>
+  <span class="spacer"></span>
+</mat-toolbar>
 
-  <mat-menu #menuUsuario="matMenu">
-    <button mat-menu-item [routerLink]="['/usuarios/listar']">Listar Usuarios</button>
-  </mat-menu>
-  
-  <router-outlet></router-outlet>
+<mat-menu #menuPrincipal="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="menuBanda">Bandas</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuRol">Roles</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuCategoria">Categorías</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+</mat-menu>
+
+<mat-menu #menuBanda="matMenu">
+  <button mat-menu-item [routerLink]="['/bandas/listar']">Listar Bandas</button>
+  <button mat-menu-item [routerLink]="['/bandas/registrar']">Registrar Bandas</button>
+</mat-menu>
+
+<mat-menu #menuRol="matMenu">
+  <button mat-menu-item [routerLink]="['/roles/listar']">Listar Roles</button>
+  <button mat-menu-item [routerLink]="['/roles/registrar']">Registrar Roles</button>
+</mat-menu>
+
+<mat-menu #menuNotificacion="matMenu">
+  <button mat-menu-item [routerLink]="['/notificaciones/listar']">Listar Notificaciones</button>
+  <button mat-menu-item [routerLink]="['/notificaciones/registrar']">Registrar Notificaciones</button>
+</mat-menu>
+
+<mat-menu #menuCategoria="matMenu">
+  <button mat-menu-item [routerLink]="['/categorias/listar']">Listar Categorías</button>
+  <button mat-menu-item [routerLink]="['/categorias/registrar']">Registrar Categorias</button>
+</mat-menu>
+
+<mat-menu #menuUsuario="matMenu">
+  <button mat-menu-item [routerLink]="['/usuarios/listar']">Listar Usuarios</button>
+</mat-menu>
+
+<router-outlet></router-outlet>

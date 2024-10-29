@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Categoria } from '../models/Categoria';
+import { Rol } from '../models/Rol';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 const base_url=environment.base
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
-  private url=`${base_url}/categorias`
-  private listacambio= new Subject<Categoria[]>()
+export class RolService {
+  private url=`${base_url}/roles`
+  private listacambio= new Subject<Rol[]>()
 
   constructor(private http:HttpClient) { }
 
   list(){
-    return this.http.get<Categoria[]>(this.url)
+    return this.http.get<Rol[]>(this.url)
   }
 
-  insert(c:Categoria){
-    return this.http.post(this.url, c)
+  insert(r:Rol){
+    return this.http.post(this.url, r)
   }
 
-  setlist(listanueva:Categoria[]){
+  setlist(listanueva:Rol[]){
     this.listacambio.next(listanueva)
   }
 
@@ -35,7 +36,7 @@ export class CategoriaService {
   }
 
   listId(id:number){
-    return this.http.get<Categoria>(`${this.url}/${id}`)
+    return this.http.get<Rol>(`${this.url}/${id}`)
   }
-}
 
+}

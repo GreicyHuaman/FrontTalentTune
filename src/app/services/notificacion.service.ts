@@ -1,28 +1,29 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Categoria } from '../models/Categoria';
+import { Notificacion } from '../models/Notificacion';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 const base_url=environment.base
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaService {
-  private url=`${base_url}/categorias`
-  private listacambio= new Subject<Categoria[]>()
+export class NotificacionService {
+  private url=`${base_url}/notificaciones`
+  private listacambio= new Subject<Notificacion[]>()
 
   constructor(private http:HttpClient) { }
 
   list(){
-    return this.http.get<Categoria[]>(this.url)
+    return this.http.get<Notificacion[]>(this.url)
   }
 
-  insert(c:Categoria){
-    return this.http.post(this.url, c)
+  insert(noti:Notificacion){
+    return this.http.post(this.url, noti)
   }
 
-  setlist(listanueva:Categoria[]){
+  setlist(listanueva:Notificacion[]){
     this.listacambio.next(listanueva)
   }
 
@@ -35,7 +36,6 @@ export class CategoriaService {
   }
 
   listId(id:number){
-    return this.http.get<Categoria>(`${this.url}/${id}`)
+    return this.http.get<Notificacion>(`${this.url}/${id}`)
   }
 }
-
