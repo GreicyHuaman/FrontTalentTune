@@ -7,6 +7,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
+import { RolComponent } from './components/rol/rol.component';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { NotificacionComponent } from './components/notificacion/notificacion.co
     BandaComponent,
     CategoriaComponent,
     NotificacionComponent,
+    RolComponent,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,

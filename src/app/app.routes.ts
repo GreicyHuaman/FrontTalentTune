@@ -9,6 +9,9 @@ import { ListarbandaComponent } from './components/banda/listarbanda/listarbanda
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
 import { ListarnotificacionComponent } from './components/notificacion/listarnotificacion/listarnotificacion.component';
 import { CreaeditanotificacionComponent } from './components/notificacion/creaeditanotificacion/creaeditanotificacion.component';
+import { RolComponent } from './components/rol/rol.component';
+import { ListarrolComponent } from './components/rol/listarrol/listarrol.component';
+import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +57,21 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditanotificacionComponent
+            }
+        ]
+    },
+
+    {
+        path:'roles', component:RolComponent,
+        children:[
+            {
+                path:'listar', component:ListarrolComponent
+            },
+            {
+                path:'registrar', component:CreaeditarolComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditarolComponent
             }
         ]
     }
