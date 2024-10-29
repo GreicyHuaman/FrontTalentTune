@@ -3,6 +3,7 @@
     <span class="spacer"></span>
   
     <button mat-button [matMenuTriggerFor]="menuBanda">Bandas</button>
+    <button mat-button [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
     <button mat-button [matMenuTriggerFor]="menuCategoria">Categorías</button>
     <button mat-button [matMenuTriggerFor]="menuUsuario">Usuarios</button>
   </mat-toolbar>
@@ -10,6 +11,11 @@
   <mat-menu #menuBanda="matMenu">
     <button mat-menu-item [routerLink]="['/bandas/listar']">Listar Bandas</button>
     <button mat-menu-item [routerLink]="['/bandas/registrar']">Registrar Bandas</button>
+  </mat-menu>
+
+  <mat-menu #menuNotificacion="matMenu">
+    <button mat-menu-item [routerLink]="['/notificaciones/listar']">Listar Notificaciones</button>
+    <button mat-menu-item [routerLink]="['/notificaciones/registrar']">Registrar Notificaciones</button>
   </mat-menu>
   
   <mat-menu #menuCategoria="matMenu">

@@ -6,11 +6,22 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
+import { NotificacionComponent } from './components/notificacion/notificacion.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UsuarioComponent, BandaComponent, CategoriaComponent, MatToolbarModule, MatIconModule, MatMenuModule, RouterModule],
+  imports: [
+    RouterOutlet,
+    UsuarioComponent,
+    BandaComponent,
+    CategoriaComponent,
+    NotificacionComponent,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    RouterModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
