@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Rol } from '../../../models/Rol';
-import { RolService } from '../../../services/rol.service';
+import { Categoria } from '../../../models/Categoria';
+import { CategoriaService } from '../../../services/categoria.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-creaeditarol',
+  selector: 'app-creaeditacategoria',
   standalone: true,
   imports: [
     MatInputModule,
@@ -20,24 +20,24 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
     ReactiveFormsModule,
     CommonModule,
   ],
-  templateUrl: './creaeditarol.component.html',
-  styleUrl: './creaeditarol.component.css'
+  templateUrl: './creaeditacategoria.component.html',
+  styleUrl: './creaeditacategoria.component.css'
 })
-export class CreaeditarolComponent implements OnInit {
+export class CreaeditacategoriaComponent {
   form: FormGroup= new FormGroup({})
-  rol: Rol= new Rol()
+  cat: Categoria= new Categoria()
   id:number=0
   edicion:boolean=false
 
-  listaroles:{value:string, viewvalue:string}[]=[
-    {value:'Artista', viewvalue:'Artista'},
-    {value:'Manager', viewvalue:'Manager'},
-    {value:'Seguidor', viewvalue:'Seguidor'},
-    {value:'Administrador', viewvalue:'Administrador'}
+  listacategorias:{value:string, viewvalue:string}[]=[
+    {value:'Rock', viewvalue:'Rock'},
+    {value:'Salsa', viewvalue:'Salsa'},
+    {value:'Cumbia', viewvalue:'Cumbia'},
+    {value:'Balada', viewvalue:'Balada'}
   ]
 
   constructor(
-    private rS:RolService,
+    private cS:CategoriaService,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -52,34 +52,33 @@ export class CreaeditarolComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      hrol: ['', Validators.required]
+      hcategoria: ['', Validators.required]
     });
   }
 
   aceptar():void{
     if(this.form.valid){
-      this.rol.idRol=this.form.value.hcodigo
-      this.rol.tipoRol=this.form.value.hrol
-      this.rS.insert(this.rol).subscribe(d=>{
-        this.rS.list().subscribe(d=>{
-          this.rS.setlist(d)
+      this.cat.idCategoria=this.form.value.hcodigo
+      this.cat.tipoCategoria=this.form.value.hcategoria
+      this.cS.insert(this.cat).subscribe(d=>{
+        this.cS.list().subscribe(d=>{
+          this.cS.setlist(d)
         })
       })
 
     }
-    this.router.navigate(['roles'])
+    this.router.navigate(['categorias'])
   }
 
   init() {
    if (this.edicion) {
-     this.rS.listId(this.id).subscribe((data) => {
+     this.cS.listId(this.id).subscribe((data) => {
         this.form.patchValue({
-         hcodigo: data.idRol,
-         hrol: data.tipoRol
+         hcodigo: data.idCategoria,
+         hcategoria: data.tipoCategoria
         });
       });
     }
   }
-
 
 }

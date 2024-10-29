@@ -12,6 +12,7 @@ import { CreaeditanotificacionComponent } from './components/notificacion/creaed
 import { RolComponent } from './components/rol/rol.component';
 import { ListarrolComponent } from './components/rol/listarrol/listarrol.component';
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
+import { CreaeditacategoriaComponent } from './components/categoria/creaeditacategoria/creaeditacategoria.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,12 @@ export const routes: Routes = [
         children:[
             {
                 path:'listar', component:ListarcategoriaComponent
+            },
+            {
+                path:'registrar', component:CreaeditacategoriaComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditacategoriaComponent
             }
         ]
     },
