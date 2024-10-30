@@ -7,4 +7,7 @@ export class Usuario {
   agencia: string = '';
   sexo: string = '';
   estudios: string = '';
+  username: string = '';
+  password: string = '';
+  enabled: boolean = true;
 }

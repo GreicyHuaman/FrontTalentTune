@@ -1,16 +1,15 @@
 <div class="container">
-  <div class="form-header"><h1>Registrar Usuario</h1></div>
+  <div class="form-header"><h1>Registro de Usuarios</h1></div>
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
-      <mat-form-field >
+      <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Nombres</mat-label>
         <input matInput placeholder="Ejem. Greicy" formControlName="unombres" />
-
         <mat-error *ngIf="form.get('unombres')?.hasError('required')">
           Este campo es obligatorio
         </mat-error>
       </mat-form-field>
-
+      
       <br />
 
       <mat-form-field>
@@ -26,7 +25,7 @@
           [for]="picker"
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <br>
+        <br />
         <mat-error *ngIf="form.get('ufechaNacimiento')?.hasError('required')">
           Este campo es obligatorio
         </mat-error>
@@ -53,7 +52,7 @@
         </mat-error>
       </mat-form-field>
 
-      <br>
+      <br />
 
       <mat-form-field>
         <mat-label>Agencia</mat-label>
@@ -63,7 +62,7 @@
         </mat-error>
       </mat-form-field>
 
-      <br>
+      <br />
 
       <mat-form-field>
         <mat-label>Sexo</mat-label>
@@ -80,7 +79,11 @@
       <br />
       <mat-form-field>
         <mat-label>Estudios</mat-label>
-        <input matInput placeholder="Ejem. Universidad" formControlName="uestudios" />
+        <input
+          matInput
+          placeholder="Ejem. Universidad"
+          formControlName="uestudios"
+        />
 
         <mat-error *ngIf="form.get('uestudios')?.hasError('required')">
           Este campo es obligatorio

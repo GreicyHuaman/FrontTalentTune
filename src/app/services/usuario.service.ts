@@ -15,20 +15,32 @@ export class UsuarioService {
 
   constructor(private http:HttpClient) { }
   
-  listar(){
+  list(){
     return this.http.get<Usuario[]>(this.url)
   }
 
-  insertar(us:Usuario){
+  insert(us:Usuario){
     return this.http.post(this.url,us);
   }
 
-  setList(listaNueva:Usuario[]){
+  setlist(listaNueva:Usuario[]){
     this.listaCambio.next(listaNueva);
   }
 
-  getList(){
+  getlist(){
     return this.listaCambio.asObservable();
+  }
+
+  delete(id:number){
+    return this.http.delete(`${this.url}/${id}`)
+  }
+
+  listId(id:number){
+    return this.http.get<Usuario>(`${this.url}/${id}`)
+  }
+
+  update(usu:Usuario){
+    return this.http.patch(this.url,usu);
   }
 
 }

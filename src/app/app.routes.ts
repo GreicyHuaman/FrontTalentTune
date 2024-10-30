@@ -13,6 +13,7 @@ import { RolComponent } from './components/rol/rol.component';
 import { ListarrolComponent } from './components/rol/listarrol/listarrol.component';
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CreaeditacategoriaComponent } from './components/categoria/creaeditacategoria/creaeditacategoria.component';
+import { CreaeditausuarioComponent } from './components/usuario/creaeditausuario/creaeditausuario.component';
 
 export const routes: Routes = [
     {
@@ -20,7 +21,14 @@ export const routes: Routes = [
         path:'usuarios', component:UsuarioComponent,
         children:[{
             path:'listar',component:ListarusuarioComponent
-        }]
+        },
+        {
+            path:'registrar',component:CreaeditausuarioComponent
+        },
+        {
+            path:'ediciones/:id',component:CreaeditausuarioComponent
+        }
+    ]
     },
 
     {
