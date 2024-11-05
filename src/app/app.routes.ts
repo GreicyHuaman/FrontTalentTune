@@ -13,6 +13,9 @@ import { RolComponent } from './components/rol/rol.component';
 import { ListarrolComponent } from './components/rol/listarrol/listarrol.component';
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CreaeditacategoriaComponent } from './components/categoria/creaeditacategoria/creaeditacategoria.component';
+import { ComentarioComponent } from './components/comentario/comentario.component';
+import { ListarcomentarioComponent } from './components/comentario/listarcomentario/listarcomentario.component';
+import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
 
 export const routes: Routes = [
     {
@@ -79,6 +82,21 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditarolComponent
+            }
+        ]
+    },
+
+    {
+        path:'comentarios', component:ComentarioComponent,
+        children:[
+            {
+                path:'listar', component:ListarcomentarioComponent
+            },
+            {
+                path:'registrar', component:CreaeditacomentarioComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditacomentarioComponent
             }
         ]
     }
