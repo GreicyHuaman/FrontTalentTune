@@ -16,6 +16,9 @@ import { CreaeditacategoriaComponent } from './components/categoria/creaeditacat
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { ListarcomentarioComponent } from './components/comentario/listarcomentario/listarcomentario.component';
 import { CreaeditacomentarioComponent } from './components/comentario/creaeditacomentario/creaeditacomentario.component';
+import { MensajeComponent } from './components/mensaje/mensaje.component';
+import { ListarmensajeComponent } from './components/mensaje/listarmensaje/listarmensaje.component';
+import { CreaeditamensajeComponent } from './components/mensaje/creaeditamensaje/creaeditamensaje.component';
 
 export const routes: Routes = [
     {
@@ -97,6 +100,21 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditacomentarioComponent
+            }
+        ]
+    },
+
+    {
+        path:'mensajes', component:MensajeComponent,
+        children:[
+            {
+                path:'listar', component:ListarmensajeComponent
+            },
+            {
+                path:'registrar', component:CreaeditamensajeComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditamensajeComponent
             }
         ]
     }
