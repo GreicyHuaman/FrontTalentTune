@@ -33,7 +33,16 @@ export class CreaeditacategoriaComponent {
     {value:'Rock', viewvalue:'Rock'},
     {value:'Salsa', viewvalue:'Salsa'},
     {value:'Cumbia', viewvalue:'Cumbia'},
-    {value:'Balada', viewvalue:'Balada'}
+    {value:'Balada', viewvalue:'Balada'},
+    {value:'Clásica', viewvalue:'Clásica'},
+    {value:'Jazz', viewvalue:'Jazz'},
+    {value:'Blues', viewvalue:'Blues'},
+    {value:'Disco', viewvalue:'Disco'},
+    {value:'Pop', viewvalue:'Pop'},
+    {value:'Electrónica', viewvalue:'Electrónica'},
+    {value:'Country', viewvalue:'Country'},
+    {value:'Hip Hop', viewvalue:'Hip Hop'},
+    {value:'Reggaeton', viewvalue:'Reggaeton'}
   ]
 
   constructor(
