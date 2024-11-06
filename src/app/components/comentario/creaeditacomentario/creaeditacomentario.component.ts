@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,7 +23,7 @@ import { ComentarioService } from '../../../services/comentario.service';
   templateUrl: './creaeditacomentario.component.html',
   styleUrl: './creaeditacomentario.component.css'
 })
-export class CreaeditacomentarioComponent {
+export class CreaeditacomentarioComponent implements OnInit{
   form: FormGroup= new FormGroup({})
   comentario: Comentario= new Comentario()
   id:number=0

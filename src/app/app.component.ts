@@ -10,6 +10,7 @@ import { NotificacionComponent } from './components/notificacion/notificacion.co
 import { RolComponent } from './components/rol/rol.component';
 import { ComentarioComponent } from './components/comentario/comentario.component';
 import { MensajeComponent } from './components/mensaje/mensaje.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ import { MensajeComponent } from './components/mensaje/mensaje.component';
     RolComponent,
     ComentarioComponent,
     MensajeComponent,
+    ContratoComponent,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,

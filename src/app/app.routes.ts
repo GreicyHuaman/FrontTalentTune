@@ -19,6 +19,9 @@ import { CreaeditacomentarioComponent } from './components/comentario/creaeditac
 import { MensajeComponent } from './components/mensaje/mensaje.component';
 import { ListarmensajeComponent } from './components/mensaje/listarmensaje/listarmensaje.component';
 import { CreaeditamensajeComponent } from './components/mensaje/creaeditamensaje/creaeditamensaje.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
+import { ListarcontratoComponent } from './components/contrato/listarcontrato/listarcontrato.component';
+import { CreaeditacontratoComponent } from './components/contrato/creaeditacontrato/creaeditacontrato.component';
 
 export const routes: Routes = [
     {
@@ -115,6 +118,21 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditamensajeComponent
+            }
+        ]
+    },
+
+    {
+        path:'contratos', component:ContratoComponent,
+        children:[
+            {
+                path:'listar', component:ListarcontratoComponent
+            },
+            {
+                path:'registrar', component:CreaeditacontratoComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditacontratoComponent
             }
         ]
     }
