@@ -23,11 +23,11 @@ export class EventoService {
     return this.http.post(this.url,eve);
   }
 
-  setList(listaNueva: Evento[]) {
+  setlist(listaNueva: Evento[]) {
     this.listaCambio.next(listaNueva);
   }
 
-  getList() {
+  getlist() {
     return this.listaCambio.asObservable();
   }
 
@@ -39,7 +39,7 @@ export class EventoService {
     return this.http.put(this.url,eve);
   }
 
-  eliminar(id: number) {
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
   

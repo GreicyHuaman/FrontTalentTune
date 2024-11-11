@@ -6,7 +6,7 @@ import { CreaeditausuarioComponent } from './creaeditausuario/creaeditausuario.c
 @Component({
   selector: 'app-usuario',
   standalone: true,
-  imports: [ListarusuarioComponent, RouterOutlet, CreaeditausuarioComponent],
+  imports: [ListarusuarioComponent, RouterOutlet],
   templateUrl: './usuario.component.html',
   styleUrl: './usuario.component.css'
 })

@@ -3,11 +3,13 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { BandaComponent } from './components/banda/banda.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
 import { RolComponent } from './components/rol/rol.component';
+import { EventoComponent } from './components/evento/evento.component';
+import { RegistroeventoComponent } from './components/registroevento/registroevento.component';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +20,13 @@ import { RolComponent } from './components/rol/rol.component';
     BandaComponent,
     CategoriaComponent,
     NotificacionComponent,
+    EventoComponent,
+    RegistroeventoComponent,
     RolComponent,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

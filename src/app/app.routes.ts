@@ -14,6 +14,12 @@ import { ListarrolComponent } from './components/rol/listarrol/listarrol.compone
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CreaeditacategoriaComponent } from './components/categoria/creaeditacategoria/creaeditacategoria.component';
 import { CreaeditausuarioComponent } from './components/usuario/creaeditausuario/creaeditausuario.component';
+import { EventoComponent } from './components/evento/evento.component';
+import { ListareventoComponent } from './components/evento/listarevento/listarevento.component';
+import { CreaeditaeventoComponent } from './components/evento/creaeditaevento/creaeditaevento.component';
+import { RegistroeventoComponent } from './components/registroevento/registroevento.component';
+import { ListarregistroeventoComponent } from './components/registroevento/listarregistroevento/listarregistroevento.component';
+import { CreaeditaregistroeventoComponent } from './components/registroevento/creaeditaregistroevento/creaeditaregistroevento.component';
 
 export const routes: Routes = [
     {
@@ -87,6 +93,35 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditarolComponent
+            }
+        ]
+    },
+    {
+        path:'eventos', component:EventoComponent,
+        children:[
+            {
+                path:'listar', component:ListareventoComponent
+            },
+            {
+                path:'registrar', component:CreaeditaeventoComponent
+            },
+            {
+               path:'ediciones/:id', component:CreaeditaeventoComponent
+            }
+        ]
+    },
+
+    {
+        path:'registroeventos', component:RegistroeventoComponent,
+        children:[
+            {
+                path:'listar', component:ListarregistroeventoComponent
+            },
+            {
+                path:'registrar', component:CreaeditaregistroeventoComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditaregistroeventoComponent
             }
         ]
     }

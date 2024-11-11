@@ -6,11 +6,23 @@
 </mat-toolbar>
 
 <mat-menu #menuPrincipal="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="menuRegistroEvento">Registro Evento</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuEvento">Evento</button>
   <button mat-menu-item [matMenuTriggerFor]="menuBanda">Bandas</button>
   <button mat-menu-item [matMenuTriggerFor]="menuRol">Roles</button>
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria">Categorías</button>
   <button mat-menu-item [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+</mat-menu>
+
+<mat-menu #menuRegistroEvento="matMenu">
+  <button mat-menu-item [routerLink]="['/registroeventos/listar']">Listar Registro Eventos</button>
+  <button mat-menu-item [routerLink]="['/registroeventos/registrar']">Registrar registro de eventos</button>
+</mat-menu>
+
+<mat-menu #menuEvento="matMenu">
+  <button mat-menu-item [routerLink]="['/eventos/listar']">Listar Evento</button>
+  <button mat-menu-item [routerLink]="['/eventos/registrar']">Registrar Evento</button>
 </mat-menu>
 
 <mat-menu #menuBanda="matMenu">

@@ -23,11 +23,11 @@ export class RegistroeventoService {
     return this.http.post(this.url, revento);
   }
 
-  setList(listaNueva: RegistroEvento[]) {
+  setlist(listaNueva: RegistroEvento[]) {
     this.listaCambio.next(listaNueva);
   }
 
-  getList() {
+  getlist() {
     return this.listaCambio.asObservable();
   }
 
@@ -39,7 +39,7 @@ export class RegistroeventoService {
     return this.http.put(this.url, revento);
   }
 
-  eliminar(id: number) {
+  delete(id: number) {
     return this.http.delete(`${this.url}/${id}`);
   }
   

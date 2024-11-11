@@ -40,6 +40,10 @@ export class ListarusuarioComponent {
     });
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   eliminar(id: number) {
     this.uS.delete(id).subscribe((data) => {
       this.uS.list().subscribe((data) => {
