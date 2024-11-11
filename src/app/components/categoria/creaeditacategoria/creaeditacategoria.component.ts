@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -29,13 +29,6 @@ export class CreaeditacategoriaComponent {
   id:number=0
   edicion:boolean=false
 
-  listacategorias:{value:string, viewvalue:string}[]=[
-    {value:'Rock', viewvalue:'Rock'},
-    {value:'Salsa', viewvalue:'Salsa'},
-    {value:'Cumbia', viewvalue:'Cumbia'},
-    {value:'Balada', viewvalue:'Balada'}
-  ]
-
   constructor(
     private cS:CategoriaService,
     private formBuilder: FormBuilder,
@@ -60,11 +53,19 @@ export class CreaeditacategoriaComponent {
     if(this.form.valid){
       this.cat.idCategoria=this.form.value.hcodigo
       this.cat.tipoCategoria=this.form.value.hcategoria
-      this.cS.insert(this.cat).subscribe(d=>{
-        this.cS.list().subscribe(d=>{
-          this.cS.setlist(d)
-        })
-      })
+      if (this.edicion) {
+        this.cS.update(this.cat).subscribe((data) => {
+          this.cS.list().subscribe((data) => {
+            this.cS.setlist(data);
+          });
+        });
+      } else {
+        this.cS.insert(this.cat).subscribe((d) => {
+          this.cS.list().subscribe((d) => {
+            this.cS.setlist(d);
+          });
+        });
+      }
 
     }
     this.router.navigate(['categorias'])
@@ -73,9 +74,10 @@ export class CreaeditacategoriaComponent {
   init() {
    if (this.edicion) {
      this.cS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-         hcodigo: data.idCategoria,
-         hcategoria: data.tipoCategoria
+        this.form=new FormGroup({
+         //hcodigo: new FormControl({value: data.idCategoria, disabled:true}),
+         hcodigo: new FormControl(data.idCategoria),
+         hcategoria: new FormControl(data.tipoCategoria)
         });
       });
     }

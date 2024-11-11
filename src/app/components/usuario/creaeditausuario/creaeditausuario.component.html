@@ -3,10 +3,19 @@
   <div>
     <form [formGroup]="form" (submit)="aceptar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Codigo</mat-label>
+        <input matInput formControlName="ucodigo"/>
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="example-full-width">
         <mat-label>Nombres</mat-label>
         <input matInput placeholder="Ejem. Greicy" formControlName="unombres" />
         <mat-error *ngIf="form.get('unombres')?.hasError('required')">
           Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('unombres')?.hasError('soloLetras')">
+          No se permiten números, ni tildes
         </mat-error>
       </mat-form-field>
       
@@ -29,6 +38,9 @@
         <mat-error *ngIf="form.get('ufechaNacimiento')?.hasError('required')">
           Este campo es obligatorio
         </mat-error>
+        <mat-error *ngIf="form.get('ufechaNacimiento')?.hasError('menorDeEdad')">
+          Debe ser mayor de 18 años.
+        </mat-error>
       </mat-form-field>
 
       <br />
@@ -50,6 +62,11 @@
         <mat-error *ngIf="form.get('upais')?.hasError('required')">
           Este campo es obligatorio
         </mat-error>
+
+        <mat-error *ngIf="form.get('upais')?.hasError('soloLetras')">
+          No se permiten números, ni tildes
+        </mat-error>
+
       </mat-form-field>
 
       <br />
@@ -59,6 +76,9 @@
         <input matInput formControlName="uagencia" />
         <mat-error *ngIf="form.get('uagencia')?.hasError('required')">
           Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('uagencia')?.hasError('soloLetras')">
+          No se permiten números, ni tildes
         </mat-error>
       </mat-form-field>
 
@@ -87,6 +107,9 @@
 
         <mat-error *ngIf="form.get('uestudios')?.hasError('required')">
           Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('uestudios')?.hasError('soloLetras')">
+          No se permiten números, ni tildes
         </mat-error>
       </mat-form-field>
       <br />

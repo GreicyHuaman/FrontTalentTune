@@ -9,12 +9,11 @@
 
             <mat-form-field>
                 <mat-label>Tipo de Categoria</mat-label>
-                <mat-select formControlName="hcategoria">
-                  @for (cat of listacategorias; track cat) {
-                    <mat-option [value]="cat.value">{{ cat.viewvalue }}</mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
+                <input matInput placeholder="Ejem. Pop" formControlName="hcategoria" />
+                <mat-error *ngIf="form.get('hcategoria')?.hasError('required')">
+                  Complete este campo
+                </mat-error>
+            </mat-form-field>
 
             <button mat-flat-button >Registrar</button>
                 

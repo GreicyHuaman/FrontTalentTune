@@ -3,7 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { FormBuilder,FormControl,FormGroup, ReactiveFormsModule, Validators,} from '@angular/forms';
+import { AbstractControl, FormBuilder,FormControl,FormGroup, ReactiveFormsModule, ValidationErrors, Validators,} from '@angular/forms';
 import { Usuario } from '../../../models/Usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -55,17 +55,32 @@ export class CreaeditausuarioComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       ucodigo:[''],
-      unombres: ['', Validators.required],
-      ufechaNacimiento: ['', Validators.required],
+      unombres: ['', [Validators.required, this.validarSoloLetras]],
+      ufechaNacimiento: ['', [Validators.required, this.validarMayorDeEdad]],
       udescripcion: ['', Validators.required],
-      upais: ['', Validators.required],
-      uagencia: ['', Validators.required],
+      upais: ['', [Validators.required, this.validarSoloLetras]],
+      uagencia: ['', [Validators.required, this.validarSoloLetras]],
       usexo: ['', Validators.required],
-      uestudios: ['', Validators.required],
+      uestudios: ['', [Validators.required, this.validarSoloLetras]],
     });
   }
 
+  validarMayorDeEdad(control: FormControl) {
+    const fechaNacimiento = new Date(control.value);
+    const fechaLimite = new Date('2007-01-01');
+
+    return fechaNacimiento <= fechaLimite ? null : { menorDeEdad: true };
+  }
+  validarSoloLetras(control: AbstractControl): ValidationErrors | null {
+    const soloLetras = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
+    return soloLetras.test(control.value) ? null : { soloLetras: true };
+  }
+
   aceptar(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // Muestra todos los errores
+      return; // Detiene la ejecución si el formulario es inválido
+    }
     if (this.form.valid) {
       this.usuario.idUsuario=this.form.value.ucodigo;
       this.usuario.nombres = this.form.value.unombres;
@@ -108,5 +123,6 @@ export class CreaeditausuarioComponent implements OnInit {
       })
     }
   }
+
 
 }

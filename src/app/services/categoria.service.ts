@@ -37,5 +37,9 @@ export class CategoriaService {
   listId(id:number){
     return this.http.get<Categoria>(`${this.url}/${id}`)
   }
+
+  update(cat:Categoria){
+    return this.http.patch(this.url,cat);
+  }
 }
 
