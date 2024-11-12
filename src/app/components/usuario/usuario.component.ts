@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { ListarusuarioComponent } from './listarusuario/listarusuario.component';
-import { CreaeditausuarioComponent } from './creaeditausuario/creaeditausuario.component';
 
 @Component({
   selector: 'app-usuario',
