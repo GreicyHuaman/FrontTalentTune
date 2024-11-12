@@ -36,7 +36,7 @@ export class EventoService {
   }
 
   update(eve: Evento) {
-    return this.http.put(this.url,eve);
+    return this.http.patch(this.url,eve);
   }
 
   delete(id: number) {

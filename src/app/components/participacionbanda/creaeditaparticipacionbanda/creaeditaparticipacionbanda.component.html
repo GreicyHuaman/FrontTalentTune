@@ -1,0 +1,86 @@
+<div class="container">
+    <div><h1>Registro de participacion</h1></div>
+  
+    <div class="formContainer">
+      <form [formGroup]="form" (submit)="aceptar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Codigo</mat-label>
+          <input
+            matInput
+            placeholder="Codigo"
+            formControlName="ucodigo"
+            readonly
+          />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione la fecha de ingreso</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fechaIngreso" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Seleccione la fecha de salida</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="fechaSalida" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+  
+        
+        <br />
+
+        
+        <mat-form-field class="example-full-width">
+          <mat-label>participacion</mat-label>
+  
+          <mat-select formControlName="urol">
+            @for (food of listarol; track food) {
+            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+  
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Organizador</mat-label>
+          <mat-select formControlName="uusuario">
+            @for (food of listaUsuarios; track food) {
+  
+            <mat-option [value]="food.idUsuario">{{ food.nombres }}</mat-option>
+  
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Banda</mat-label>
+          <mat-select formControlName="ubanda">
+            @for (food of listaBandas; track food) {
+  
+            <mat-option [value]="food.idBanda">{{ food.nombre }}</mat-option>
+  
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <div class="buttonContainer">
+          <button mat-raised-button>Registrar</button>
+          <button mat-raised-button color="warn" routerLink="/participacionbandas">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

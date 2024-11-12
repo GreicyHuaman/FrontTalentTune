@@ -20,6 +20,9 @@ import { CreaeditaeventoComponent } from './components/evento/creaeditaevento/cr
 import { RegistroeventoComponent } from './components/registroevento/registroevento.component';
 import { ListarregistroeventoComponent } from './components/registroevento/listarregistroevento/listarregistroevento.component';
 import { CreaeditaregistroeventoComponent } from './components/registroevento/creaeditaregistroevento/creaeditaregistroevento.component';
+import { ParticipacionbandaComponent } from './components/participacionbanda/participacionbanda.component';
+import { ListarparticipacionbandaComponent } from './components/participacionbanda/listarparticipacionbanda/listarparticipacionbanda.component';
+import { CreaeditaparticipacionbandaComponent } from './components/participacionbanda/creaeditaparticipacionbanda/creaeditaparticipacionbanda.component';
 
 export const routes: Routes = [
     {
@@ -122,6 +125,21 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditaregistroeventoComponent
+            }
+        ]
+    },
+
+    {
+        path:'participacionbandas', component:ParticipacionbandaComponent,
+        children:[
+            {
+                path:'listar', component:ListarparticipacionbandaComponent
+            },
+            {
+                path:'registrar', component:CreaeditaparticipacionbandaComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditaparticipacionbandaComponent
             }
         ]
     }

@@ -27,8 +27,6 @@ export class ListarregistroeventoComponent {
     'c4',
     'c5',
     'c6',
-    'c7',
-    'c8',
     'accion01',
     'accion02',
   ];
