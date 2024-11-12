@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Banda } from '../models/Banda';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { BandasMasContratosActivosDTO } from '../models/BandasMasContratosActivosDTO';
 const base_url=environment.base
 
 @Injectable({
@@ -40,6 +41,12 @@ export class BandaService {
 
   checkNombreUnico(nombre: string) {
     return this.http.get<boolean>(`${this.url}/exists/${nombre}`);
+  }
+
+  getBandasMasContratosActivos(): Observable<BandasMasContratosActivosDTO[]> {
+    return this.http.get<BandasMasContratosActivosDTO[]>(
+      `${this.url}/BandasMasContratosActivos`
+    );
   }
 
 }

@@ -17,15 +17,17 @@ import { CreaeditausuarioComponent } from './components/usuario/creaeditausuario
 import { EventoComponent } from './components/evento/evento.component';
 import { ListareventoComponent } from './components/evento/listarevento/listarevento.component';
 import { CreaeditaeventoComponent } from './components/evento/creaeditaevento/creaeditaevento.component';
-import { RegistroeventoComponent } from './components/registroevento/registroevento.component';
-import { ListarregistroeventoComponent } from './components/registroevento/listarregistroevento/listarregistroevento.component';
-import { CreaeditaregistroeventoComponent } from './components/registroevento/creaeditaregistroevento/creaeditaregistroevento.component';
-import { ParticipacionbandaComponent } from './components/participacionbanda/participacionbanda.component';
-import { ListarparticipacionbandaComponent } from './components/participacionbanda/listarparticipacionbanda/listarparticipacionbanda.component';
-import { CreaeditaparticipacionbandaComponent } from './components/participacionbanda/creaeditaparticipacionbanda/creaeditaparticipacionbanda.component';
 import { ContratoComponent } from './components/contrato/contrato.component';
 import { ListarcontratoComponent } from './components/contrato/listarcontrato/listarcontrato.component';
 import { CreaeditacontratoComponent } from './components/contrato/creaeditacontrato/creaeditacontrato.component';
+import { UsuarioeventoComponent } from './components/usuarioevento/usuarioevento.component';
+import { CreaeditausuarioeventoComponent } from './components/usuarioevento/creaeditausuarioevento/creaeditausuarioevento.component';
+import { ListarusuarioeventoComponent } from './components/usuarioevento/listarusuarioevento/listarusuarioevento.component';
+import { UsuariobandaComponent } from './components/usuariobanda/usuariobanda.component';
+import { ListarusuariobandaComponent } from './components/usuariobanda/listarusuariobanda/listarusuariobanda.component';
+import { CreaeditausuariobandaComponent } from './components/usuariobanda/creaeditausuariobanda/creaeditausuariobanda.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { ReportebandasmascontratosactivosComponent } from './components/reportes/reportebandasmascontratosactivos/reportebandasmascontratosactivos.component';
 
 export const routes: Routes = [
   {
@@ -143,39 +145,39 @@ export const routes: Routes = [
   },
 
   {
-    path: 'registroeventos',
-    component: RegistroeventoComponent,
+    path: 'usuarioevento',
+    component: UsuarioeventoComponent,
     children: [
       {
         path: 'listar',
-        component: ListarregistroeventoComponent,
+        component: ListarusuarioeventoComponent,
       },
       {
         path: 'registrar',
-        component: CreaeditaregistroeventoComponent,
+        component: CreaeditausuarioeventoComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditaregistroeventoComponent,
+        component: CreaeditausuarioeventoComponent,
       },
     ],
   },
 
   {
-    path: 'participacionbandas',
-    component: ParticipacionbandaComponent,
+    path: 'usuariobanda',
+    component: UsuariobandaComponent,
     children: [
       {
         path: 'listar',
-        component: ListarparticipacionbandaComponent,
+        component: ListarusuariobandaComponent,
       },
       {
         path: 'registrar',
-        component: CreaeditaparticipacionbandaComponent,
+        component: CreaeditausuariobandaComponent,
       },
       {
         path: 'ediciones/:id',
-        component: CreaeditaparticipacionbandaComponent,
+        component: CreaeditausuariobandaComponent,
       },
     ],
   },
@@ -194,6 +196,16 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditacontratoComponent,
+      },
+    ],
+  },
+  {
+    path: 'reportes',
+    component: ReportesComponent,
+    children: [
+      {
+        path: 'reportemayorcontratos',
+        component: ReportebandasmascontratosactivosComponent,
       },
     ],
   },
