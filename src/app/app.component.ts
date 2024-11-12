@@ -10,12 +10,20 @@ import { NotificacionComponent } from './components/notificacion/notificacion.co
 import { RegistroeventoComponent } from './components/registroevento/registroevento.component';
 import { RolComponent } from './components/rol/rol.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    UsuarioComponent,
+    BandaComponent,
+    CategoriaComponent,
+    NotificacionComponent,
+    RolComponent,
+    ContratoComponent,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,

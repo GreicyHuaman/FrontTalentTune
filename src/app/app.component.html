@@ -14,6 +14,7 @@
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria">Categorías</button>
   <button mat-menu-item [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuContrato">Contratos</button>
 </mat-menu>
 
 <mat-menu #menuParticipacionBanda="matMenu">
@@ -54,6 +55,11 @@
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item [routerLink]="['/usuarios/listar']">Listar Usuarios</button>
   <button mat-menu-item [routerLink]="['/usuarios/registrar']">Registrar Usuarios</button>
+</mat-menu>
+
+<mat-menu #menuContrato="matMenu">
+  <button mat-menu-item [routerLink]="['/contratos/listar']">Listar Contratos</button>
+  <button mat-menu-item [routerLink]="['/contratos/registrar']">Registrar Contratos</button>
 </mat-menu>
 
 <router-outlet></router-outlet>

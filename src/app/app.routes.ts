@@ -23,124 +23,178 @@ import { CreaeditaregistroeventoComponent } from './components/registroevento/cr
 import { ParticipacionbandaComponent } from './components/participacionbanda/participacionbanda.component';
 import { ListarparticipacionbandaComponent } from './components/participacionbanda/listarparticipacionbanda/listarparticipacionbanda.component';
 import { CreaeditaparticipacionbandaComponent } from './components/participacionbanda/creaeditaparticipacionbanda/creaeditaparticipacionbanda.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
+import { ListarcontratoComponent } from './components/contrato/listarcontrato/listarcontrato.component';
+import { CreaeditacontratoComponent } from './components/contrato/creaeditacontrato/creaeditacontrato.component';
 
 export const routes: Routes = [
-    {
-        //rutas del front
-        path:'usuarios', component:UsuarioComponent,
-        children:[{
-            path:'listar',component:ListarusuarioComponent
-        },
-        {
-            path:'registrar',component:CreaeditausuarioComponent
-        },
-        {
-            path:'ediciones/:id',component:CreaeditausuarioComponent
-        }
-    ]
-    },
+  {
+    //rutas del front
+    path: 'usuarios',
+    component: UsuarioComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarusuarioComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditausuarioComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditausuarioComponent,
+      },
+    ],
+  },
 
-    {
-        path:'bandas', component:BandaComponent,
-        children:[
-            {
-                path:'listar', component:ListarbandaComponent
-            },
-            {
-                path:'registrar', component:CreaeditabandaComponent
-            },
-            {
-                path:'ediciones/:id', component:CreaeditabandaComponent
-            }
-        ]
-    },
+  {
+    path: 'bandas',
+    component: BandaComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarbandaComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditabandaComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditabandaComponent,
+      },
+    ],
+  },
 
-    {
-        path:'categorias', component:CategoriaComponent,
-        children:[
-            {
-                path:'listar', component:ListarcategoriaComponent
-            },
-            {
-                path:'registrar', component:CreaeditacategoriaComponent
-            },
-            {
-                path:'ediciones/:id', component:CreaeditacategoriaComponent
-            }
-        ]
-    },
+  {
+    path: 'categorias',
+    component: CategoriaComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarcategoriaComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditacategoriaComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditacategoriaComponent,
+      },
+    ],
+  },
 
-    {
-        path:'notificaciones', component:NotificacionComponent,
-        children:[
-            {
-                path:'listar', component:ListarnotificacionComponent
-            },
-            {
-                path:'registrar', component:CreaeditanotificacionComponent
-            },
-            {
-                path:'ediciones/:id', component:CreaeditanotificacionComponent
-            }
-        ]
-    },
+  {
+    path: 'notificaciones',
+    component: NotificacionComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarnotificacionComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditanotificacionComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditanotificacionComponent,
+      },
+    ],
+  },
 
-    {
-        path:'roles', component:RolComponent,
-        children:[
-            {
-                path:'listar', component:ListarrolComponent
-            },
-            {
-                path:'registrar', component:CreaeditarolComponent
-            },
-            {
-                path:'ediciones/:id', component:CreaeditarolComponent
-            }
-        ]
-    },
-    {
-        path:'eventos', component:EventoComponent,
-        children:[
-            {
-                path:'listar', component:ListareventoComponent
-            },
-            {
-                path:'registrar', component:CreaeditaeventoComponent
-            },
-            {
-               path:'ediciones/:id', component:CreaeditaeventoComponent
-            }
-        ]
-    },
+  {
+    path: 'roles',
+    component: RolComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarrolComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditarolComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditarolComponent,
+      },
+    ],
+  },
+  {
+    path: 'eventos',
+    component: EventoComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListareventoComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditaeventoComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaeventoComponent,
+      },
+    ],
+  },
 
-    {
-        path:'registroeventos', component:RegistroeventoComponent,
-        children:[
-            {
-                path:'listar', component:ListarregistroeventoComponent
-            },
-            {
-                path:'registrar', component:CreaeditaregistroeventoComponent
-            },
-            {
-                path:'ediciones/:id', component:CreaeditaregistroeventoComponent
-            }
-        ]
-    },
+  {
+    path: 'registroeventos',
+    component: RegistroeventoComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarregistroeventoComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditaregistroeventoComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaregistroeventoComponent,
+      },
+    ],
+  },
 
-    {
-        path:'participacionbandas', component:ParticipacionbandaComponent,
-        children:[
-            {
-                path:'listar', component:ListarparticipacionbandaComponent
-            },
-            {
-                path:'registrar', component:CreaeditaparticipacionbandaComponent
-            },
-            {
-                path:'ediciones/:id', component:CreaeditaparticipacionbandaComponent
-            }
-        ]
-    }
+  {
+    path: 'participacionbandas',
+    component: ParticipacionbandaComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarparticipacionbandaComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditaparticipacionbandaComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditaparticipacionbandaComponent,
+      },
+    ],
+  },
+  {
+    path: 'contratos',
+    component: ContratoComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarcontratoComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditacontratoComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditacontratoComponent,
+      },
+    ],
+  },
 ];

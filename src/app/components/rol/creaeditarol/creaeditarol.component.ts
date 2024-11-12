@@ -32,8 +32,7 @@ export class CreaeditarolComponent implements OnInit {
   listaroles:{value:string, viewvalue:string}[]=[
     {value:'Artista', viewvalue:'Artista'},
     {value:'Manager', viewvalue:'Manager'},
-    {value:'Seguidor', viewvalue:'Seguidor'},
-    {value:'Administrador', viewvalue:'Administrador'}
+    {value:'Seguidor', viewvalue:'Seguidor'}
   ]
 
   constructor(

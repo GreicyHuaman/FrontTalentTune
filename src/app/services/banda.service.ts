@@ -38,4 +38,8 @@ export class BandaService {
     return this.http.get<Banda>(`${this.url}/${id}`)
   }
 
+  checkNombreUnico(nombre: string) {
+    return this.http.get<boolean>(`${this.url}/exists/${nombre}`);
+  }
+
 }

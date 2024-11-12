@@ -1,0 +1,63 @@
+<div>
+    <h1>Registro de Contratos</h1>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>Código</mat-label>
+                <input matInput placeholder="Ejem. 1" formControlName="hcodigo" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="hfechaInicio">
+                <mat-hint>MM/DD/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>  
+
+            <mat-form-field>
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="hfechaFin">
+                <mat-hint>MM/DD/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>  
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Duracion</mat-label>
+                <input matInput placeholder="Ejem. 3 meses" formControlName="hduracion" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Salario</mat-label>
+                <input matInput placeholder="Ejem. 250" formControlName="hsalario" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="hestado">
+                  @for (rol of listaroles; track rol) {
+                    <mat-option [value]="rol.value">{{ rol.viewvalue }}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Condiciones</mat-label>
+                <input matInput placeholder="Ejem. Registrar las actividades realizadas" formControlName="hcondiciones" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Renovable</mat-label>
+                <mat-select formControlName="hrenovable">
+                  @for (ren of listarenovacion; track ren) {
+                    <mat-option [value]="ren.value">{{ ren.viewvalue }}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            
+            <button mat-raised-button>Registrar</button>
+                
+        </form>
+    </div>
+</div>
