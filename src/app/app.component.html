@@ -11,8 +11,6 @@
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria">Categorías</button>
   <button mat-menu-item [matMenuTriggerFor]="menuUsuario">Usuarios</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuComentario">Comentarios</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuMensaje">Mensajes</button>
   <button mat-menu-item [matMenuTriggerFor]="menuContrato">Contratos</button>
 </mat-menu>
 
@@ -38,16 +36,6 @@
 
 <mat-menu #menuUsuario="matMenu">
   <button mat-menu-item [routerLink]="['/usuarios/listar']">Listar Usuarios</button>
-</mat-menu>
-
-<mat-menu #menuComentario="matMenu">
-  <button mat-menu-item [routerLink]="['/comentarios/listar']">Listar Comentarios</button>
-  <button mat-menu-item [routerLink]="['/comentarios/registrar']">Registrar Comentarios</button>
-</mat-menu>
-
-<mat-menu #menuMensaje="matMenu">
-  <button mat-menu-item [routerLink]="['/mensajes/listar']">Listar Mensajes</button>
-  <button mat-menu-item [routerLink]="['/mensajes/registrar']">Registrar Mensajes</button>
 </mat-menu>
 
 <mat-menu #menuContrato="matMenu">

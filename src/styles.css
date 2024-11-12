@@ -1,7 +1,5 @@
-/* Importa la fuente Merriweather */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
-/* Aplicación de estilo global */
 html, body {
     height: 100%;
     margin: 0;
