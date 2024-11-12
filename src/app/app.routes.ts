@@ -13,6 +13,9 @@ import { RolComponent } from './components/rol/rol.component';
 import { ListarrolComponent } from './components/rol/listarrol/listarrol.component';
 import { CreaeditarolComponent } from './components/rol/creaeditarol/creaeditarol.component';
 import { CreaeditacategoriaComponent } from './components/categoria/creaeditacategoria/creaeditacategoria.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
+import { ListarcontratoComponent } from './components/contrato/listarcontrato/listarcontrato.component';
+import { CreaeditacontratoComponent } from './components/contrato/creaeditacontrato/creaeditacontrato.component';
 
 export const routes: Routes = [
     {
@@ -79,6 +82,21 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreaeditarolComponent
+            }
+        ]
+    },
+
+    {
+        path:'contratos', component:ContratoComponent,
+        children:[
+            {
+                path:'listar', component:ListarcontratoComponent
+            },
+            {
+                path:'registrar', component:CreaeditacontratoComponent
+            },
+            {
+                path:'ediciones/:id', component:CreaeditacontratoComponent
             }
         ]
     }

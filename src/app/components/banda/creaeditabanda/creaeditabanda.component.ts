@@ -45,20 +45,29 @@ export class CreaeditabandaComponent implements OnInit{
     })
   }
 
-  aceptar():void{
-    if(this.form.valid){
-      this.banda.idBanda=this.form.value.hcodigo
-      this.banda.nombre=this.form.value.hbandas
-      this.banda.fechaCreacion= this.form.value.hfecha
-      this.bS.insert(this.banda).subscribe(d=>{
-        this.bS.list().subscribe(d=>{
-          this.bS.setlist(d)
-        })
-      })
-
+  aceptar(): void {
+    if (this.form.valid) {
+      const nombreBanda = this.form.value.hbandas;
+  
+      this.bS.checkNombreUnico(nombreBanda).subscribe((existe: boolean) => {
+        if (existe) {
+          alert("El nombre de esta banda ya existe. Pruebe con otro.");
+        } else {
+          this.banda.idBanda = this.form.value.hcodigo;
+          this.banda.nombre = nombreBanda;
+          this.banda.fechaCreacion = this.form.value.hfecha;
+  
+          this.bS.insert(this.banda).subscribe(() => {
+            this.bS.list().subscribe(d => {
+              this.bS.setlist(d);
+              this.router.navigate(['bandas']);
+            });
+          });
+        }
+      });
     }
-    this.router.navigate(['bandas'])
   }
+  
 
   init(){
     if(this.edicion){

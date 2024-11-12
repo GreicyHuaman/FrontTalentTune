@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { NotificacionComponent } from './components/notificacion/notificacion.component';
 import { RolComponent } from './components/rol/rol.component';
+import { ContratoComponent } from './components/contrato/contrato.component';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { RolComponent } from './components/rol/rol.component';
     CategoriaComponent,
     NotificacionComponent,
     RolComponent,
+    ContratoComponent,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
