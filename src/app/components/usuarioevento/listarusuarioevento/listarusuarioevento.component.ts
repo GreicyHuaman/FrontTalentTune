@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { UsuarioEvento } from '../../../models/UsuarioEvento';
@@ -17,11 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatButton,
     RouterModule,
     RouterLink,
-    CommonModule,],
+    CommonModule],
   templateUrl: './listarusuarioevento.component.html',
   styleUrl: './listarusuarioevento.component.css'
 })
-export class ListarusuarioeventoComponent {
+export class ListarusuarioeventoComponent implements OnInit {
 
   dataSource: MatTableDataSource<UsuarioEvento> = new MatTableDataSource();
   displayedColumns: string[] = [
@@ -38,7 +38,7 @@ export class ListarusuarioeventoComponent {
 
   constructor(private ueS: UsuarioeventoService) {}
 
-  ngOnit(): void {
+  ngOnInit(): void {
     this.ueS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

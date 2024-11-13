@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { UsuarioBanda } from '../../../models/UsuarioBanda';
 import { UsuariobandaService } from '../../../services/usuariobanda.service';
@@ -18,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './listarusuariobanda.component.html',
   styleUrl: './listarusuariobanda.component.css'
 })
-export class ListarusuariobandaComponent {
+export class ListarusuariobandaComponent implements OnInit {
 
   dataSource: MatTableDataSource<UsuarioBanda> = new MatTableDataSource();
   displayedColumns: string[] = [
@@ -35,7 +35,7 @@ export class ListarusuariobandaComponent {
 
   constructor(private ubS: UsuariobandaService) {}
 
-  ngOnit(): void {
+  ngOnInit(): void {
     this.ubS.list().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
