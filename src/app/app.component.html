@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="verificar()">
   <button mat-button [matMenuTriggerFor]="menuPrincipal">
       <mat-icon>menu</mat-icon> Menú Principal
   </button>
@@ -6,16 +6,16 @@
 </mat-toolbar>
 
 <mat-menu #menuPrincipal="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="menuParticipacionBanda">Participacion Banda</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuRegistroEvento">Registro Evento</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuEvento">Evento</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuBanda">Bandas</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuRol">Roles</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuCategoria">Categorías</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuUsuario" >Usuarios</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuContrato">Contratos</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuReporte">Reportes</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuParticipacionBanda" *ngIf="isAdministrador()">Participacion Banda</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuRegistroEvento" *ngIf="isAdministrador()">Registro Evento</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuEvento" *ngIf="isTalento()">Evento</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuBanda" *ngIf="isTalento()">Bandas</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuRol" *ngIf="isAdministrador()">Roles</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuNotificacion" *ngIf="isAdministrador()">Notificaciones</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuCategoria" *ngIf="isAdministrador()">Categorías</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuUsuario" *ngIf="isAdministrador()" >Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuContrato" *ngIf="isAdministrador()">Contratos</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuReporte"*ngIf="isAdministrador()">Reportes</button>
   <button mat-menu-item [matMenuTriggerFor]="menuSalir" >Cerrar Sesión</button>
 </mat-menu>
 <mat-menu #menuSalir="matMenu">
