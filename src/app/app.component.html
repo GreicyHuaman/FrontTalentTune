@@ -8,8 +8,8 @@
 <mat-menu #menuPrincipal="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="menuParticipacionBanda" *ngIf="isAdministrador()">Participacion Banda</button>
   <button mat-menu-item [matMenuTriggerFor]="menuRegistroEvento" *ngIf="isAdministrador()">Registro Evento</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuEvento" *ngIf="isTalento()">Evento</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuBanda" *ngIf="isTalento()">Bandas</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuEvento" *ngIf="isTalento()||isAdministrador()">Evento</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuBanda" *ngIf="isTalento()||isAdministrador()">Bandas</button>
   <button mat-menu-item [matMenuTriggerFor]="menuRol" *ngIf="isAdministrador()">Roles</button>
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion" *ngIf="isAdministrador()">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria" *ngIf="isAdministrador()">Categorías</button>

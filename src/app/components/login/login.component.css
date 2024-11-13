@@ -5,3 +5,11 @@ mat-form-field {
     background-color: #260591;     
     color: white;         
 }
+img {
+    width: 150px; /* Ajusta el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10px; /* Añade bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade una sombra */
+    margin-bottom: 20px; /* Añade un margen inferior */
+  }
+  

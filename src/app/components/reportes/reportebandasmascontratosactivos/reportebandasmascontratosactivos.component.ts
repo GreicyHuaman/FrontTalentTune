@@ -30,10 +30,10 @@ export class ReportebandasmascontratosactivosComponent implements OnInit {
           data: data.map((item) => item.contratosActivos),
           label: 'Cantidad de contratos activos',
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
+            '#FFDE59',
+            '#FCCE11',
           ],
-          borderColor: 'rgba( 255, 99, 132, 1)',
+          borderColor: '#FCCE11',
           borderWidth: 1,
         },
       ];
