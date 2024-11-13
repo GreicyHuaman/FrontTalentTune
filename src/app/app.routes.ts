@@ -28,8 +28,20 @@ import { ListarusuariobandaComponent } from './components/usuariobanda/listarusu
 import { CreaeditausuariobandaComponent } from './components/usuariobanda/creaeditausuariobanda/creaeditausuariobanda.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { ReportebandasmascontratosactivosComponent } from './components/reportes/reportebandasmascontratosactivos/reportebandasmascontratosactivos.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
+  {
+    path: '',
+    redirectTo:'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     //rutas del front
     path: 'usuarios',
@@ -48,6 +60,7 @@ export const routes: Routes = [
         component: CreaeditausuarioComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
 
   {
@@ -67,6 +80,7 @@ export const routes: Routes = [
         component: CreaeditabandaComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
 
   {
@@ -86,6 +100,7 @@ export const routes: Routes = [
         component: CreaeditacategoriaComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
 
   {
@@ -105,6 +120,7 @@ export const routes: Routes = [
         component: CreaeditanotificacionComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
 
   {
@@ -124,6 +140,7 @@ export const routes: Routes = [
         component: CreaeditarolComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
   {
     path: 'eventos',
@@ -142,6 +159,7 @@ export const routes: Routes = [
         component: CreaeditaeventoComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
 
   {
@@ -161,6 +179,7 @@ export const routes: Routes = [
         component: CreaeditausuarioeventoComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
 
   {
@@ -180,6 +199,7 @@ export const routes: Routes = [
         component: CreaeditausuariobandaComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
   {
     path: 'contratos',
@@ -198,6 +218,7 @@ export const routes: Routes = [
         component: CreaeditacontratoComponent,
       },
     ],
+    canActivate:[seguridadGuard],
   },
   {
     path: 'reportes',
@@ -208,5 +229,11 @@ export const routes: Routes = [
         component: ReportebandasmascontratosactivosComponent,
       },
     ],
+    canActivate:[seguridadGuard],
+  },
+  {
+    path: 'homes',
+    component: HomeComponent,
+    canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
   },
 ];

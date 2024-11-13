@@ -13,9 +13,19 @@
   <button mat-menu-item [matMenuTriggerFor]="menuRol">Roles</button>
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria">Categorías</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuUsuario">Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuUsuario" *ngIf ="isAdministrador()" >Usuarios</button>
   <button mat-menu-item [matMenuTriggerFor]="menuContrato">Contratos</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuReporte">Reportes</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuSalir" >Cerrar Sesión</button>
 </mat-menu>
+<mat-menu #menuSalir="matMenu">
+  <button mat-menu-item [routerLink]="['/login']" (click)="cerrar()">Salir</button>
+  <button mat-menu-item> Rol:<span>{{ role }}</span></button>
+ </mat-menu>
+
+<mat-menu #menuReporte="matMenu">
+  <button mat-menu-item [routerLink]="['/reportes/reportemayorcontratos']">Reporte bandas con mas contratos</button>
+ </mat-menu>
 
 <mat-menu #menuParticipacionBanda="matMenu">
   <button mat-menu-item [routerLink]="['/usuariobanda/listar']">Listar participacion en bandas</button>
