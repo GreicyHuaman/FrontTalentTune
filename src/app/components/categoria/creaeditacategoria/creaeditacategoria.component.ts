@@ -91,7 +91,6 @@ export class CreaeditacategoriaComponent {
    if (this.edicion) {
      this.cS.listId(this.id).subscribe((data) => {
         this.form=new FormGroup({
-         //hcodigo: new FormControl({value: data.idCategoria, disabled:true}),
          hcodigo: new FormControl(data.idCategoria),
          hcategoria: new FormControl(data.tipoCategoria)
         });

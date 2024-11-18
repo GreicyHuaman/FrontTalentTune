@@ -14,11 +14,13 @@
   <button mat-menu-item [matMenuTriggerFor]="menuRol" *ngIf="isAdministrador()">Roles</button>
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion" *ngIf="isAdministrador()">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria" *ngIf="isAdministrador()">Categorías</button>
-  
+  <button mat-menu-item [matMenuTriggerFor]="menuUsuario" *ngIf="isAdministrador()" >Usuarios</button>
+  <button mat-menu-item [matMenuTriggerFor]="menuContenido" *ngIf="isAdministrador()">Contenidos</button>
   <button mat-menu-item [matMenuTriggerFor]="menuContrato" *ngIf="isAdministrador()">Contratos</button>
   <button mat-menu-item [matMenuTriggerFor]="menuReporte"*ngIf="isAdministrador()">Reportes</button>
   <button mat-menu-item [matMenuTriggerFor]="menuSalir" >Cerrar Sesión</button>
 </mat-menu>
+
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item [routerLink]="['/landing']" (click)="cerrar()">Salir</button>
   <button mat-menu-item> Rol:<span>{{ role }}</span></button>
@@ -73,6 +75,10 @@
   <button mat-menu-item [routerLink]="['/contratos/registrar']">Registrar Contratos</button>
 </mat-menu>
 
+<mat-menu #menuContenido="matMenu">
+  <button mat-menu-item [routerLink]="['/contenidos/listar']">Listar Contenidos</button>
+  <button mat-menu-item [routerLink]="['/contenidos/registrar']">Registrar Contenidos</button>
+</mat-menu>
 
 
 <router-outlet></router-outlet>

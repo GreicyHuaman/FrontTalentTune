@@ -32,6 +32,11 @@ import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { ContenidoComponent } from './components/contenido/contenido.component';
+import { ListarcontenidoComponent } from './components/contenido/listarcontenido/listarcontenido.component';
+import { CreaeditacontenidoComponent } from './components/contenido/creaeditacontenido/creaeditacontenido.component';
+import { LandingComponent } from './components/landing/landing.component';
+
 
 export const routes: Routes = [
   {
@@ -230,6 +235,25 @@ export const routes: Routes = [
       {
         path: 'ediciones/:id',
         component: CreaeditacontratoComponent,
+      },
+    ],
+    canActivate:[seguridadGuard],
+  },
+  {
+    path: 'contenidos',
+    component: ContenidoComponent,
+    children: [
+      {
+        path: 'listar',
+        component: ListarcontenidoComponent,
+      },
+      {
+        path: 'registrar',
+        component: CreaeditacontenidoComponent,
+      },
+      {
+        path: 'ediciones/:id',
+        component: CreaeditacontenidoComponent,
       },
     ],
     canActivate:[seguridadGuard],
