@@ -35,7 +35,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { ListarcontenidoComponent } from './components/contenido/listarcontenido/listarcontenido.component';
 import { CreaeditacontenidoComponent } from './components/contenido/creaeditacontenido/creaeditacontenido.component';
-import { LandingComponent } from './components/landing/landing.component';
+
 
 
 export const routes: Routes = [

@@ -24,116 +24,80 @@ import { Usuario } from '../../../models/Usuario';
     CommonModule,
   ],
   templateUrl: './creaeditarol.component.html',
-  styleUrl: './creaeditarol.component.css'
+  styleUrls: ['./creaeditarol.component.css'], // Corrección: styleUrls en plural
 })
 export class CreaeditarolComponent implements OnInit {
-  form: FormGroup= new FormGroup({})
-  rol: Rol= new Rol()
-  id:number=0;
-  edicion:boolean=false
-  listarusuarios: Usuario[]=[]
+  form: FormGroup = new FormGroup({});
+  rol: Rol = new Rol();
+  id: number = 0;
+  edicion: boolean = false;
   usuarios: Usuario[] = [];
 
-  listaroles:{value:string, viewvalue:string}[]=[
-    {value:'TALENTO', viewvalue:'TALENTO'},
-    {value:'MANAGER', viewvalue:'MANAGER'},
-    {value:'SEGUIDOR', viewvalue:'SEGUIDOR'}
-  ]
+  listaroles: { value: string; viewvalue: string }[] = [
+    { value: 'TALENTO', viewvalue: 'TALENTO' },
+    { value: 'MANAGER', viewvalue: 'MANAGER' },
+    { value: 'SEGUIDOR', viewvalue: 'SEGUIDOR' },
+  ];
 
   constructor(
-    private rS:RolService,
+    private rS: RolService,
     private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
     private route: ActivatedRoute
-  ){}
+  ) {}
 
   ngOnInit(): void {
-
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
-      this.edicion = data['id'] != null;
-
+      this.edicion = this.id != null;
       this.cargarUsuarios();
-
       this.init();
-
-    
-
+    });
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hrol: ['', Validators.required],
-
       husuario: ['', Validators.required],
-    });
-    this.uS.list().subscribe((data)=>{
-      this.listarusuarios = data;
-    })
-
-      husuario: ['', Validators.required]
     });
   }
 
-  cargarUsuarios() {
+  cargarUsuarios(): void {
     this.usuarioService.list().subscribe(
       (data) => (this.usuarios = data),
       (error) => console.error('Error al cargar usuarios:', error)
     );
-
-    this.form=this.formBuilder.group({
-      hcodigo:[''],
-      htipoRol:['', Validators.required]
-    })
-
-
-
-  aceptar():void{
-    if(this.form.valid){
-      this.rol.idRol=this.form.value.hcodigo
-
-      this.rol.tipoRol=this.form.value.hrol
-
-      this.rol.usuario.idUsuario=this.form.value.husuario
-
-      this.rol.usuarios=this.form.value.husuario
-
-
-      this.rol.tipoRol=this.form.value.htipoRol
-
-      this.rS.insert(this.rol).subscribe(d=>{
-        this.rS.list().subscribe(d=>{
-          this.rS.setlist(d)
-        })
-      })
-    }
-    this.router.navigate(['roles'])
   }
 
-  init() {
-   if (this.edicion) {
-     this.rS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-         hcodigo: data.idRol,
-         hrol: data.tipoRol,
+  aceptar(): void {
+    if (this.form.valid) {
+      this.rol.idRol = this.form.value.hcodigo;
+      this.rol.tipoRol = this.form.value.hrol;
+      this.rol.usuarios = this.form.value.husuario;
 
-         husuario: data.usuario.idUsuario
-
-         husuario: data.usuarios
-
+      if (this.edicion) {
+        this.rS.update(this.rol).subscribe(() => {
+          this.rS.list().subscribe((roles) => this.rS.setlist(roles));
         });
-      });
+      } else {
+        this.rS.insert(this.rol).subscribe(() => {
+          this.rS.list().subscribe((roles) => this.rS.setlist(roles));
+        });
+      }
 
-  init(){
-    if(this.edicion){
-      this.rS.listId(this.id).subscribe((data)=>{
-        this.form = new FormGroup ({
-          hcodigo:new FormControl(data.idRol),
-          htipoRol:new FormControl(data.tipoRol)
-        })
-      })
-
+      this.router.navigate(['roles']);
     }
   }
 
+  init(): void {
+    if (this.edicion) {
+      this.rS.listId(this.id).subscribe((data) => {
+        this.form.patchValue({
+          hcodigo: data.idRol,
+          hrol: data.tipoRol,
+          husuario: data.usuarios,
+        });
+      });
+    }
+  }
 }

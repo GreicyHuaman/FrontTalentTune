@@ -6,6 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { EventoService } from '../../../services/evento.service';
 import { Evento } from '../../../models/Evento';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarevento',
@@ -13,6 +14,7 @@ import { Evento } from '../../../models/Evento';
   imports: [
     MatTableModule,
     MatPaginatorModule,
+    MatCardModule,
     MatIconModule,
     MatButton,
     RouterModule,],

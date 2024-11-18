@@ -4,7 +4,7 @@ import { JwtRequest } from '../models/jwtRequest';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
   constructor(private http: HttpClient) {}
@@ -23,6 +23,16 @@ export class LoginService {
     }
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
-    return decodedToken?.role;
+    return decodedToken?.role; 
   }
+  showUsername() {
+    let token = sessionStorage.getItem('token');
+    if (!token) {
+      return null; // Devuelve null si no hay token.
+    }
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken?.sub || null; // Retorna el username o null.
+  }
+
 }

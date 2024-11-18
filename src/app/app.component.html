@@ -2,6 +2,7 @@
   <button mat-button [matMenuTriggerFor]="menuPrincipal">
       <mat-icon>menu</mat-icon> Menú Principal
   </button>
+  <span *ngIf="username" style="margin-left: 75%;">Bienvenido, {{ username }}</span>
   <span class="spacer"></span>
 </mat-toolbar>
 
@@ -24,6 +25,7 @@
 <mat-menu #menuSalir="matMenu">
   <button mat-menu-item [routerLink]="['/landing']" (click)="cerrar()">Salir</button>
   <button mat-menu-item> Rol:<span>{{ role }}</span></button>
+  <button mat-menu-item>Usuario: <span>{{ username }}</span></button>
  </mat-menu>
 
 <mat-menu #menuReporte="matMenu">

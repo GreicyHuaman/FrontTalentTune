@@ -13,3 +13,4 @@ export class Usuario {
   sexo: string = '';
   estudios: string = '';
   enabled: boolean = true;
+}

@@ -1,51 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
 div {
-    margin: 20px;
-    font-family: 'Roboto', sans-serif;
+  margin: 20px;
+  font-family: 'Merriweather', serif;
 }
 
 h1 {
-    color: #000000;
+    color: #ffffff;
     text-align: center;
     margin-bottom: 20px;
     font-size: 28px;
-}
+    font-family: 'Merriweather', serif;
+  }
 
-table {
+  .evento-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .evento-card {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-th {
-    background-color: #FFD147;
-    color: #333;
-    padding: 12px;
-    text-align: left;
+    max-width: 400px;
+    background-color: #FFFBEB;
+    border: 1px solid #FFD147;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Merriweather', serif;
+    overflow: hidden;
+  }
+  
+  mat-card-content h2 {
+    font-size: 18px;
     font-weight: bold;
-    font-size: 16px;
-}
-
-td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  mat-card-content p {
     font-size: 14px;
     color: #555;
-}
-
-tr:nth-child(odd) {
-    background-color: #FFF5D7;
-}
-
-tr:nth-child(even) {
-    background-color: #FFFBEB;
-}
-
-.mat-elevation-z8 {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-tr:hover {
-    background-color: #FFE5A3;
-    transition: background-color 0.3s ease-in-out;
-}
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  
+  .paginador {
+    display: flex;
+    justify-content: center; /* Centra el paginador horizontalmente */
+    margin-top: 17%; /* Añade espacio entre las tarjetas y el paginador */
+    padding: 6px 5px; /* Espaciado interno */
+    background-color: #FFD147; /* Fondo */
+    border: 2px solid #FFD147; /* Bordes */
+    border-radius: 12px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto */
+    max-width: fit-content; /* Ajusta al contenido */
+    margin-left: 65%; /* Centra el paginador horizontalmente */
+  }
