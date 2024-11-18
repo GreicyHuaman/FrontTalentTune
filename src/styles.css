@@ -4,5 +4,7 @@ html, body {
     height: 100%;
     margin: 0;
     font-family: 'Merriweather', serif;
+    background-color: #1b1b1b;
+    background-image: url('assets/fondotalent.jpg');
 }
 

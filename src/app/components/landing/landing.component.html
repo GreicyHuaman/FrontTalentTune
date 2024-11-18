@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="assets/image/star.jpg">
+  <link rel="stylesheet" href="landing.component.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <title>Talent Tune</title>
+</head>
+
+<body>
+    <div class="nav-container">
+      <header class="d-flex flex-wrap justify-content-center align-items-center px-5 py-3">
+        <a href="./index.html"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-light text-decoration-none gap-3">
+          <img src="assets/image/Logo IHC.png" width="80px" alt="">
+          <span class="fs-2">Talent Tune</span>
+        </a>
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a href="#Features" class="nav-link text-light">Features</a></li>
+          <li class="nav-item"><a href="#FAQs" class="nav-link text-light">FAQs</a></li>
+          <li class="nav-item"><a href="#Acerca" class="nav-link text-light">About us</a></li>
+          <li class="nav-item"><a href="#NUESTRO EQUIPO" class="nav-link text-light">About team</a></li>
+          <li class="nav-item"><a href="/login" class="nav-link text-light">Log in</a></li>
+          <li class="nav-item"><a [routerLink]="['/usuarios/registrar']" class="nav-link text-light">Registrarse</a></li>
+        </ul>
+      </header>
+    </div>
+
+  <section id="Home" class="box-home">
+    <div class="box-home-description">
+      <img id="home-image" src="assets/image/fondo.jpg" alt="Fondo">
+      <div class="fond-image">
+        <div class="fond-image-content">
+          <img src="assets/image/artist.jpg" alt="Imagen 1">
+          <img src="assets/image/artist2.jpg" alt="Imagen 2">
+          <img src="assets/image/artist3.jpg" alt="Imagen 3">
+          <img src="assets/image/artist.jpg" alt="Imagen 4">
+          <img src="assets/image/artist2.jpg" alt="Imagen 5">
+          <img src="assets/image/artist3.jpg" alt="Imagen 6">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="Features">
+    <div class="box-features-container">
+      <h1 style="text-align: center;">CARACTERISTICAS DE TALENT TUNE </h1>
+      <div style="display: grid; justify-content: center; grid-template-columns:250px 250px 250px;gap:80px;text-align: center;">
+        <div class="box-feature">
+          <h5>Busqueda de nuevos talentos </h5>
+          <img class="feature-image" src="assets/image/caracteristica1.jpg" width="200px" alt="Busqueda">
+        </div>
+        <div class="box-feature">
+          <h5>Comunicación entre talento y manager</h5>
+          <img class="feature-image" src="assets/image/caracteristica2.jpg" width="200px" alt="Comunicación">
+        </div>
+        <div class="box-feature">
+          <h5>Información sobre eventos musicales</h5>
+          <img class="feature-image" src="assets/image/caracteristica6.jpg" width="200px" alt="Eventos">
+        </div>
+  
+        <div class="box-feature">
+          <h5>Descubrimientos de nuevos artistas</h5>
+          <img class="feature-image" src="assets/image/caracteristica5.jpg" width="200px" alt="Descubrimientos">
+        </div>
+        <div class="box-feature">
+          <h5>Carga de contenido multimedia</h5>
+          <img class="feature-image" src="assets/image/caracteristica3.jpg" width="200px" alt="contenido">
+        </div>
+        <div class="box-feature">
+          <h5>Seguridad y privacidad</h5>
+          <img class="feature-image" src="assets/image/caracteristica8.jpg" width="200px" alt="Seguridad">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="FAQs">
+    <div class="faq-container">
+      <h1 class="d-flex flex-wrap justify-content-center align-items-center" style="text-align: center;">
+        PREGUNTAS FRECUENTES
+      </h1>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let faq of faqs">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ faq.question }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>{{ faq.answer }}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </section>
+
+
+  <section id="Acerca">
+    <div class="container">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title class="dos">Misión</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Convertirnos en la principal plataforma de referencia para 
+          músicos y managers, brindando oportunidades de crecimiento 
+          y colaboración en la industria musical a nivel global.
+        </p>
+      </mat-card-content>
+      <img mat-card-image class="imagen54" src="assets/image/mision.jpg" alt="Imagen de misión">
+    </mat-card>
+  
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title class="dos">Visión</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          Facilitar la conexión y colaboración entre músicos y managers
+          a través de nuestra plataforma, permitiéndoles crear perfiles 
+          basados en su talento y género musical, compartir contenido y 
+          establecer conexiones significativas en la industria musical.
+        </p>
+      </mat-card-content>
+      <img mat-card-image class="imagen55" src="assets/image/vision.jpg" alt="Imagen de visión">
+    </mat-card>
+  </div>  
+</section>
+
+
+  
+  <div class="creadores-container">
+    <h2>LAS CREADORAS DE TALENT TUNE</h2>
+   <mat-card class="creator-card">
+      
+      <img mat-card-image src="assets/image/Greicy.jpg" alt="Imagen de Greicy Huaman">
+      <mat-card-content>
+        <h3>Greicy Huaman</h3>
+        <p>Developer</p>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card class="creator-card">
+      <img mat-card-image src="assets/image/Valeria.jpg" alt="Imagen de Valeria Alarcon">
+      <mat-card-content>
+        <h3>Valeria Alarcon</h3>
+        <p>Developer</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+
+  
+  <section id="NUESTRO EQUIPO" style="text-align: center;">
+    
+      <h1>Nuestro equipo</h1>
+    <br/>
+      <h2>About the product</h2>
+    <video controls width="700">
+      <source src="assets/video/ABOUT THE PRODUCT.mp4" type="video/mp4">
+    </video>
+  <br/>
+  <h2>About the team</h2>
+    <video controls width="700">
+      <source src="assets/video/ABOUT THE TEAM TALENTUNE.mp4" type="video/mp4">
+    </video>
+  <h2>About Us</h2>
+    <video controls width="700">
+      <source src="assets/video/ABOUT US.mp4" type="video/mp4">
+    </video>
+    
+  </section>
+
+  <footer style="background-color: #FFD147;color:black; padding: 12px;display: flex;justify-content: center;">
+    <p>
+      &copy;2024 Talent Tune
+    </p>
+  </footer>
+</body>
+
+</html>

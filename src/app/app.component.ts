@@ -5,12 +5,20 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { LoginService } from './services/login.service';
 import { CommonModule } from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatExpansionModule,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,

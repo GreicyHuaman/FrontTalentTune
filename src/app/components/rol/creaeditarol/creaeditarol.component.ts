@@ -29,13 +29,10 @@ import { Usuario } from '../../../models/Usuario';
 export class CreaeditarolComponent implements OnInit {
   form: FormGroup= new FormGroup({})
   rol: Rol= new Rol()
-  id:number=0
+  id:number=0;
   edicion:boolean=false
-<<<<<<< Updated upstream
   listarusuarios: Usuario[]=[]
-=======
   usuarios: Usuario[] = [];
->>>>>>> Stashed changes
 
   listaroles:{value:string, viewvalue:string}[]=[
     {value:'TALENTO', viewvalue:'TALENTO'},
@@ -45,7 +42,6 @@ export class CreaeditarolComponent implements OnInit {
 
   constructor(
     private rS:RolService,
-    private uS:UsuarioService,
     private formBuilder: FormBuilder,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -53,28 +49,28 @@ export class CreaeditarolComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-<<<<<<< Updated upstream
-=======
+
       this.cargarUsuarios();
->>>>>>> Stashed changes
+
       this.init();
-    });
+
     
-    
+
 
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hrol: ['', Validators.required],
-<<<<<<< Updated upstream
+
       husuario: ['', Validators.required],
     });
     this.uS.list().subscribe((data)=>{
       this.listarusuarios = data;
     })
-=======
+
       husuario: ['', Validators.required]
     });
   }
@@ -84,24 +80,32 @@ export class CreaeditarolComponent implements OnInit {
       (data) => (this.usuarios = data),
       (error) => console.error('Error al cargar usuarios:', error)
     );
->>>>>>> Stashed changes
-  }
+
+    this.form=this.formBuilder.group({
+      hcodigo:[''],
+      htipoRol:['', Validators.required]
+    })
+
+
 
   aceptar():void{
     if(this.form.valid){
       this.rol.idRol=this.form.value.hcodigo
+
       this.rol.tipoRol=this.form.value.hrol
-<<<<<<< Updated upstream
+
       this.rol.usuario.idUsuario=this.form.value.husuario
-=======
+
       this.rol.usuarios=this.form.value.husuario
->>>>>>> Stashed changes
+
+
+      this.rol.tipoRol=this.form.value.htipoRol
+
       this.rS.insert(this.rol).subscribe(d=>{
         this.rS.list().subscribe(d=>{
           this.rS.setlist(d)
         })
       })
-
     }
     this.router.navigate(['roles'])
   }
@@ -112,15 +116,24 @@ export class CreaeditarolComponent implements OnInit {
         this.form.patchValue({
          hcodigo: data.idRol,
          hrol: data.tipoRol,
-<<<<<<< Updated upstream
+
          husuario: data.usuario.idUsuario
-=======
+
          husuario: data.usuarios
->>>>>>> Stashed changes
+
         });
       });
+
+  init(){
+    if(this.edicion){
+      this.rS.listId(this.id).subscribe((data)=>{
+        this.form = new FormGroup ({
+          hcodigo:new FormControl(data.idRol),
+          htipoRol:new FormControl(data.tipoRol)
+        })
+      })
+
     }
   }
-
 
 }
