@@ -1,0 +1,36 @@
+<div class="contenido-list">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Fecha de Publicación</th>
+        <th>Contenido/Imagen</th>
+        <th>Likes</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contenido of contenidos">
+        <td>{{ contenido.idContenido }}</td>
+        <td>{{ contenido.titulo }}</td>
+        <td>{{ contenido.fechaPublicacion | date: 'shortDate' }}</td>
+        <td>
+          <img *ngIf="contenido.contenido" [src]="contenido.contenido" alt="imagen" width="100">
+          <span *ngIf="!contenido.contenido">{{ contenido.contenido }}</span>
+        </td>
+        <td>
+          <button 
+            [class.liked]="contenido.likes"
+            (click)="toggleLike(contenido)">
+            ❤️
+          </button>
+        </td>
+        <td>
+          <button (click)="editar(contenido.idContenido)">Actualizar</button>
+          <button (click)="eliminar(contenido.idContenido)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

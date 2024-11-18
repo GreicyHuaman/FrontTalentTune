@@ -13,7 +13,11 @@
   <button mat-menu-item [matMenuTriggerFor]="menuRol" *ngIf="isAdministrador()">Roles</button>
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion" *ngIf="isAdministrador()">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria" *ngIf="isAdministrador()">Categorías</button>
+<<<<<<< Updated upstream
   <button mat-menu-item [matMenuTriggerFor]="menuUsuario" *ngIf="isAdministrador()" >Usuarios</button>
+=======
+  <button mat-menu-item [matMenuTriggerFor]="menuContenido" *ngIf="isAdministrador()">Contenidos</button>
+>>>>>>> Stashed changes
   <button mat-menu-item [matMenuTriggerFor]="menuContrato" *ngIf="isAdministrador()">Contratos</button>
   <button mat-menu-item [matMenuTriggerFor]="menuReporte"*ngIf="isAdministrador()">Reportes</button>
   <button mat-menu-item [matMenuTriggerFor]="menuSalir" >Cerrar Sesión</button>
@@ -72,4 +76,12 @@
   <button mat-menu-item [routerLink]="['/contratos/registrar']">Registrar Contratos</button>
 </mat-menu>
 
+<<<<<<< Updated upstream
+=======
+<mat-menu #menuContenido="matMenu">
+  <button mat-menu-item [routerLink]="['/contenidos/listar']">Listar Contenidos</button>
+  <button mat-menu-item [routerLink]="['/contenidos/registrar']">Registrar Contenidos</button>
+</mat-menu>
+
+>>>>>>> Stashed changes
 <router-outlet></router-outlet>

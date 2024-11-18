@@ -1,57 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
 div {
-    margin: 20px;
-    font-family: 'Merriweather', serif;
+  margin: 20px;
+  font-family: 'Merriweather', serif;
 }
 
 h1 {
-    color: #000000;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 28px;
-    font-family: 'Merriweather', serif;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-family: 'Merriweather', serif;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-family: 'Merriweather', serif;
+.notificacion-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
 }
 
-th {
-    background-color: #FFD147;
-    color: #333;
-    padding: 12px;
-    text-align: left;
-    font-weight: bold;
-    font-size: 16px;
-    font-family: 'Merriweather', serif;
+.notificacion-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #FFFBEB;
+  border: 1px solid #FFD147;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Merriweather', serif;
 }
 
-td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    font-size: 14px;
-    color: #555;
-    font-family: 'Merriweather', serif;
+mat-card-content h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
 }
 
-tr:nth-child(odd) {
-    background-color: #FFF5D7;
+mat-card-content p {
+  font-size: 14px;
+  color: #555;
 }
 
-tr:nth-child(even) {
-    background-color: #FFFBEB;
-}
-
-.mat-elevation-z8 {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-tr:hover {
-    background-color: #FFE5A3;
-    transition: background-color 0.3s ease-in-out;
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
