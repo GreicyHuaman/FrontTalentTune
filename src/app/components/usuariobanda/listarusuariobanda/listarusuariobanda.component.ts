@@ -4,8 +4,9 @@ import { UsuarioBanda } from '../../../models/UsuarioBanda';
 import { UsuariobandaService } from '../../../services/usuariobanda.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
-import { MatButton } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarusuariobanda',
@@ -13,7 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatButton,
+    MatButtonModule,
+    MatCardModule,
     RouterModule,],
   templateUrl: './listarusuariobanda.component.html',
   styleUrl: './listarusuariobanda.component.css'

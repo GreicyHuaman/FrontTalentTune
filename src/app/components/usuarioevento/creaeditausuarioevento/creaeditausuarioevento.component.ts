@@ -63,7 +63,6 @@ export class CreaeditausuarioeventoComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       ucodigo: [''],
-      uinteresado: ['', Validators.required],
       uasistio: ['', Validators.required],
       ucalificacion: ['', Validators.required],
       uusuario: ['', Validators.required],
@@ -87,7 +86,6 @@ export class CreaeditausuarioeventoComponent implements OnInit{
     
     if (this.form.valid) {
       this.ue.idUsuarioEvento = this.form.value.ucodigo;
-      this.ue.interesado = this.form.value.uinteresado;
       this.ue.asistio = this.form.value.uasistio;
       this.ue.calificacion = this.form.value.ucalificacion;
       this.ue.usuario.idUsuario = this.form.value.uusuario;
@@ -114,7 +112,6 @@ export class CreaeditausuarioeventoComponent implements OnInit{
       this.ueS.listId(this.id).subscribe((data) => {
         this.form = new FormGroup({
           ucodigo: new FormControl(data.idUsuarioEvento),
-          uinteresado: new FormControl(data.interesado),
           uasistio: new FormControl(data.asistio),
           ucalificacion: new FormControl(data.calificacion),
           uusuario: new FormControl(data.usuario.nombres),

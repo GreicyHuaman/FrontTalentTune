@@ -31,20 +31,31 @@ import { ReportebandasmascontratosactivosComponent } from './components/reportes
 import { LoginComponent } from './components/login/login.component';
 import { seguridadGuard } from './guard/seguridad.guard';
 import { HomeComponent } from './components/home/home.component';
-<<<<<<< Updated upstream
-=======
 import { LandingComponent } from './components/landing/landing.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { ListarcontenidoComponent } from './components/contenido/listarcontenido/listarcontenido.component';
 import { CreaeditacontenidoComponent } from './components/contenido/creaeditacontenido/creaeditacontenido.component';
->>>>>>> Stashed changes
 
 export const routes: Routes = [
   {
+    path: 'homes',
+    component: HomeComponent,
+    canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
+  },
+  {
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full',
+  },
+  {
+    path: 'landing',
+    component: LandingComponent,
+  },
+  /*{
     path: '',
     redirectTo:'login',
     pathMatch: 'full'
-  },
+  },*/
   {
     path: 'login',
     component: LoginComponent,
@@ -67,7 +78,6 @@ export const routes: Routes = [
         component: CreaeditausuarioComponent,
       },
     ],
-    canActivate:[seguridadGuard],
   },
 
   {
@@ -256,10 +266,6 @@ export const routes: Routes = [
       },
     ],
     canActivate:[seguridadGuard],
-  },
-  {
-    path: 'homes',
-    component: HomeComponent,
-    canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
-  },
+  }
+  
 ];
