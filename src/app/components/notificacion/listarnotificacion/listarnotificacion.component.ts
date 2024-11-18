@@ -17,7 +17,6 @@ import { CommonModule } from '@angular/common';
 })
 export class ListarnotificacionComponent {
   dataSource:MatTableDataSource<Notificacion> = new MatTableDataSource()
-  //displayedColumns:string[]=['c1', 'c2', 'accion01', 'accion02']
 
   constructor(private nS:NotificacionService){}
   ngOnInit(): void {
