@@ -5,18 +5,17 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { Notificacion } from '../../../models/Notificacion';
 import { NotificacionService } from '../../../services/notificacion.service';
-import {MatCardModule} from '@angular/material/card';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarnotificacion',
   standalone: true,
-  imports: [MatTableModule, MatIconModule, MatButton, RouterModule, MatCardModule, CommonModule],
+  imports: [MatTableModule, MatIconModule, MatButton, RouterModule],
   templateUrl: './listarnotificacion.component.html',
   styleUrl: './listarnotificacion.component.css'
 })
 export class ListarnotificacionComponent {
   dataSource:MatTableDataSource<Notificacion> = new MatTableDataSource()
+  displayedColumns:string[]=['c1', 'c2', 'accion01', 'accion02']
 
   constructor(private nS:NotificacionService){}
   ngOnInit(): void {

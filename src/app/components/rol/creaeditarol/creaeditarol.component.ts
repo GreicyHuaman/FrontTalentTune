@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -8,8 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Rol } from '../../../models/Rol';
 import { RolService } from '../../../services/rol.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/Usuario';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-creaeditarol',
@@ -20,7 +20,6 @@ import { Usuario } from '../../../models/Usuario';
     MatSelectModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormsModule,
     CommonModule,
   ],
   templateUrl: './creaeditarol.component.html',
@@ -31,20 +30,17 @@ export class CreaeditarolComponent implements OnInit {
   rol: Rol= new Rol()
   id:number=0;
   edicion:boolean=false
-  listarusuarios: Usuario[]=[]
-  usuarios: Usuario[] = [];
 
   listaroles:{value:string, viewvalue:string}[]=[
-    {value:'TALENTO', viewvalue:'TALENTO'},
-    {value:'MANAGER', viewvalue:'MANAGER'},
-    {value:'SEGUIDOR', viewvalue:'SEGUIDOR'}
+    {value:'Talento', viewvalue:'Talento'},
+    {value:'Manager', viewvalue:'Manager'},
+    {value:'Seguidor', viewvalue:'Seguidor'}
   ]
 
   constructor(
     private rS:RolService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private usuarioService: UsuarioService,
     private route: ActivatedRoute
   ){}
 
@@ -53,54 +49,20 @@ export class CreaeditarolComponent implements OnInit {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-
-      this.cargarUsuarios();
-
-      this.init();
-
-    
-
-
-    this.form = this.formBuilder.group({
-      hcodigo: [''],
-      hrol: ['', Validators.required],
-
-      husuario: ['', Validators.required],
+      this.init()
     });
-    this.uS.list().subscribe((data)=>{
-      this.listarusuarios = data;
-    })
-
-      husuario: ['', Validators.required]
-    });
-  }
-
-  cargarUsuarios() {
-    this.usuarioService.list().subscribe(
-      (data) => (this.usuarios = data),
-      (error) => console.error('Error al cargar usuarios:', error)
-    );
 
     this.form=this.formBuilder.group({
       hcodigo:[''],
       htipoRol:['', Validators.required]
     })
 
-
+  }
 
   aceptar():void{
     if(this.form.valid){
       this.rol.idRol=this.form.value.hcodigo
-
-      this.rol.tipoRol=this.form.value.hrol
-
-      this.rol.usuario.idUsuario=this.form.value.husuario
-
-      this.rol.usuarios=this.form.value.husuario
-
-
       this.rol.tipoRol=this.form.value.htipoRol
-
       this.rS.insert(this.rol).subscribe(d=>{
         this.rS.list().subscribe(d=>{
           this.rS.setlist(d)
@@ -109,21 +71,6 @@ export class CreaeditarolComponent implements OnInit {
     }
     this.router.navigate(['roles'])
   }
-
-  init() {
-   if (this.edicion) {
-     this.rS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-         hcodigo: data.idRol,
-         hrol: data.tipoRol,
-
-         husuario: data.usuario.idUsuario
-
-         husuario: data.usuarios
-
-        });
-      });
-
   init(){
     if(this.edicion){
       this.rS.listId(this.id).subscribe((data)=>{
@@ -132,7 +79,6 @@ export class CreaeditarolComponent implements OnInit {
           htipoRol:new FormControl(data.tipoRol)
         })
       })
-
     }
   }
 

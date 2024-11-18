@@ -1,83 +1,63 @@
 <div>
-    <h2>Crear o Editar Contrato</h2>
-    <form [formGroup]="form" (ngSubmit)="guardar()">
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Inicio</mat-label>
-        <input matInput [matDatepicker]="picker1" formControlName="fechaInicio" />
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-        <mat-error *ngIf="form.get('fechaInicio')?.hasError('required')">
-          Fecha de inicio es obligatoria.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Fin</mat-label>
-        <input matInput [matDatepicker]="picker2" formControlName="fechaFin" />
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-        <mat-error *ngIf="form.get('fechaFin')?.hasError('required')">
-          Fecha de fin es obligatoria.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Salario</mat-label>
-        <input matInput type="number" formControlName="salario" />
-        <mat-error *ngIf="form.get('salario')?.hasError('required')">
-          Salario es obligatorio.
-        </mat-error>
-        <mat-error *ngIf="form.get('salario')?.hasError('pattern')">
-          Ingrese un número válido.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Estado</mat-label>
-        <mat-select formControlName="estado">
-          <mat-option value="Activo">Activo</mat-option>
-          <mat-option value="Inactivo">Inactivo</mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('estado')?.hasError('required')">
-          Estado es obligatorio.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Condiciones</mat-label>
-        <textarea matInput formControlName="condiciones"></textarea>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Manager</mat-label>
-        <mat-select formControlName="manager">
-          <mat-option *ngFor="let usuario of usuarios" [value]="usuario.idUsuario">
-            {{ usuario.nombres }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('manager')?.hasError('required')">
-          Manager es obligatorio.
-        </mat-error>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Talento/Banda</mat-label>
-        <mat-select formControlName="talentoBanda">
-          <mat-option *ngFor="let usuario of usuarios" [value]="usuario.idUsuario">
-            {{ usuario.nombres }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="form.get('talentoBanda')?.hasError('required')">
-          Talento o Banda es obligatorio.
-        </mat-error>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit">
-        Guardar
-      </button>
-      <button mat-button color="warn" type="button" routerLink="/contratos">
-        Cancelar
-      </button>
-    </form>
-  </div>
-  
+    <h1>Registro de Contratos</h1>
+    <div>
+        <form [formGroup]="form" (submit)="aceptar()">
+            <mat-form-field class="example-full-width" *ngIf="edicion">
+                <mat-label>Código</mat-label>
+                <input matInput placeholder="Ejem. 1" formControlName="hcodigo" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de Inicio</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="hfechaInicio">
+                <mat-hint>MM/DD/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>  
+
+            <mat-form-field>
+                <mat-label>Fecha de Fin</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="hfechaFin">
+                <mat-hint>MM/DD/AAAA</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>  
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Duracion</mat-label>
+                <input matInput placeholder="Ejem. 3 meses" formControlName="hduracion" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Salario</mat-label>
+                <input matInput placeholder="Ejem. 250" formControlName="hsalario" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="hestado">
+                  @for (rol of listaroles; track rol) {
+                    <mat-option [value]="rol.value">{{ rol.viewvalue }}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Condiciones</mat-label>
+                <input matInput placeholder="Ejem. Registrar las actividades realizadas" formControlName="hcondiciones" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Renovable</mat-label>
+                <mat-select formControlName="hrenovable">
+                  @for (ren of listarenovacion; track ren) {
+                    <mat-option [value]="ren.value">{{ ren.viewvalue }}</mat-option>
+                  }
+                </mat-select>
+            </mat-form-field>
+            
+            <button mat-raised-button>Registrar</button>
+                
+        </form>
+    </div>
+</div>

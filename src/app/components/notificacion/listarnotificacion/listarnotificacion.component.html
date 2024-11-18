@@ -1,20 +1,38 @@
 <div>
-  <h1>Lista de Notificaciones</h1>
-  
-  <div class="notificacion-container">
-    <mat-card *ngFor="let element of dataSource.data" class="notificacion-card">
-      <mat-card-content>
-        <h2>ID: {{element.idNotificacion}}</h2>
-        <p>{{element.detalle}}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-icon-button (click)="eliminar(element.idNotificacion)" aria-label="Eliminar">
-          <mat-icon style="color: #FF2126;">delete</mat-icon>
-        </button>
-        <button mat-icon-button [routerLink]="['/notificaciones/ediciones',element.idNotificacion]" aria-label="Actualizar">
-          <mat-icon style="color: #03b6d6;">edit</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
+    <h1>Lista de Notificaciones</h1>
+
+    <div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="c1">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.idNotificacion}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="c2">
+            <th mat-header-cell *matHeaderCellDef> Notificación </th>
+            <td mat-cell *matCellDef="let element"> {{element.detalle}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="accion01">
+            <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+            <td mat-cell *matCellDef="let element" (click)="eliminar(element.idNotificacion)">
+              <mat-icon style="color: #FF2126;">delete</mat-icon> 
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="accion02">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-raised-button [routerLink]="['/notificaciones/ediciones',element.idNotificacion]">
+                <mat-icon style="color: #03b6d6;">edit</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+          
+    </div>
 </div>
