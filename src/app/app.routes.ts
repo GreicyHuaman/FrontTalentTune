@@ -75,7 +75,6 @@ export const routes: Routes = [
         component: CreaeditausuarioComponent,
       },
     ],
-    canActivate:[seguridadGuard],
   },
 
   {

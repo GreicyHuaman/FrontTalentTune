@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { MatCardModule } from '@angular/material/card';
   standalone: true,
   imports: [MatExpansionModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    RouterLink,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'

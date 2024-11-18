@@ -28,9 +28,8 @@ import { UsuarioService } from '../../../services/usuario.service';
 export class CreaeditarolComponent implements OnInit {
   form: FormGroup= new FormGroup({})
   rol: Rol= new Rol()
-  id:number=0
+  id:number=0;
   edicion:boolean=false
-  listarusuarios: Usuario[]=[]
 
   listaroles:{value:string, viewvalue:string}[]=[
     {value:'Talento', viewvalue:'Talento'},
@@ -40,55 +39,47 @@ export class CreaeditarolComponent implements OnInit {
 
   constructor(
     private rS:RolService,
-    private uS:UsuarioService,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
   ){}
 
   ngOnInit(): void {
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-      this.init();
+      this.init()
     });
 
-    this.form = this.formBuilder.group({
-      hcodigo: [''],
-      hrol: ['', Validators.required],
-      husuario: ['', Validators.required],
-    });
-    this.uS.list().subscribe((data)=>{
-      this.listarusuarios = data;
+    this.form=this.formBuilder.group({
+      hcodigo:[''],
+      htipoRol:['', Validators.required]
     })
+
   }
 
   aceptar():void{
     if(this.form.valid){
       this.rol.idRol=this.form.value.hcodigo
-      this.rol.tipoRol=this.form.value.hrol
-      this.rol.usuario.idUsuario=this.form.value.husuario
+      this.rol.tipoRol=this.form.value.htipoRol
       this.rS.insert(this.rol).subscribe(d=>{
         this.rS.list().subscribe(d=>{
           this.rS.setlist(d)
         })
       })
-
     }
     this.router.navigate(['roles'])
   }
-
-  init() {
-   if (this.edicion) {
-     this.rS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-         hcodigo: data.idRol,
-         hrol: data.tipoRol,
-         husuario: data.usuario.idUsuario
-        });
-      });
+  init(){
+    if(this.edicion){
+      this.rS.listId(this.id).subscribe((data)=>{
+        this.form = new FormGroup ({
+          hcodigo:new FormControl(data.idRol),
+          htipoRol:new FormControl(data.tipoRol)
+        })
+      })
     }
   }
-
 
 }

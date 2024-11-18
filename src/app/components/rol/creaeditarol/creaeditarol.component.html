@@ -16,14 +16,7 @@
         </mat-select>
       </mat-form-field>
       <br />
-      <mat-form-field class="example-full-width">
-        <mat-label>Usuario</mat-label>
-        <mat-select formControlName="husuario">
-          <mat-option *ngFor="let c of listarusuarios" [value]="c.nombres">
-            {{ c.nombres }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      
 
       <button mat-raised-button>Registrar</button>
     </form>

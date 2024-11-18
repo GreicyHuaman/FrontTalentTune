@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from '../models/Usuario';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+
 const base_url=environment.base
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +14,10 @@ export class UsuarioService {
   private url=`${base_url}/usuarios`
 
   private listaCambio=new Subject<Usuario[]>();
+  
+  private sortList(list: Usuario[]): Usuario[] {
+    return list.sort((a, b) => a.idUsuario- b.idUsuario);
+  }
 
   constructor(private http:HttpClient) { }
   
@@ -41,6 +47,9 @@ export class UsuarioService {
 
   update(usu:Usuario){
     return this.http.patch(this.url,usu);
+  }
+  encontrarUltimoUsuario(): Observable<number> {
+    return this.http.get<number>(`${this.url}/ultimoUsuario`);
   }
 
 }

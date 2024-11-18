@@ -6,6 +6,7 @@
 </mat-toolbar>
 
 <mat-menu #menuPrincipal="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="menuUsuario" >Usuarios</button>
   <button mat-menu-item [matMenuTriggerFor]="menuParticipacionBanda" *ngIf="isAdministrador()">Participacion Banda</button>
   <button mat-menu-item [matMenuTriggerFor]="menuRegistroEvento" *ngIf="isAdministrador()">Registro Evento</button>
   <button mat-menu-item [matMenuTriggerFor]="menuEvento" *ngIf="isTalento()||isAdministrador()">Evento</button>
@@ -13,13 +14,13 @@
   <button mat-menu-item [matMenuTriggerFor]="menuRol" *ngIf="isAdministrador()">Roles</button>
   <button mat-menu-item [matMenuTriggerFor]="menuNotificacion" *ngIf="isAdministrador()">Notificaciones</button>
   <button mat-menu-item [matMenuTriggerFor]="menuCategoria" *ngIf="isAdministrador()">Categorías</button>
-  <button mat-menu-item [matMenuTriggerFor]="menuUsuario" *ngIf="isAdministrador()" >Usuarios</button>
+  
   <button mat-menu-item [matMenuTriggerFor]="menuContrato" *ngIf="isAdministrador()">Contratos</button>
   <button mat-menu-item [matMenuTriggerFor]="menuReporte"*ngIf="isAdministrador()">Reportes</button>
   <button mat-menu-item [matMenuTriggerFor]="menuSalir" >Cerrar Sesión</button>
 </mat-menu>
 <mat-menu #menuSalir="matMenu">
-  <button mat-menu-item [routerLink]="['/login']" (click)="cerrar()">Salir</button>
+  <button mat-menu-item [routerLink]="['/landing']" (click)="cerrar()">Salir</button>
   <button mat-menu-item> Rol:<span>{{ role }}</span></button>
  </mat-menu>
 
@@ -71,5 +72,7 @@
   <button mat-menu-item [routerLink]="['/contratos/listar']">Listar Contratos</button>
   <button mat-menu-item [routerLink]="['/contratos/registrar']">Registrar Contratos</button>
 </mat-menu>
+
+
 
 <router-outlet></router-outlet>

@@ -1,3 +1,5 @@
+import { Rol } from "./Rol";
+
 export class Usuario {
   idUsuario: number = 0;
   username: string = '';
@@ -11,4 +13,5 @@ export class Usuario {
   sexo: string = '';
   estudios: string = '';
   enabled: boolean = true;
+  rol:Rol=new Rol();
 }

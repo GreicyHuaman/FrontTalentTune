@@ -4,7 +4,7 @@
     <form [formGroup]="form" (submit)="aceptar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Codigo</mat-label>
-        <input matInput formControlName="ucodigo"/>
+        <input matInput formControlName="ucodigo" readonly/>
       </mat-form-field>
 
       <br />
@@ -20,6 +20,31 @@
       </mat-form-field>
       
       <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Ejem. Huaman" formControlName="uapellidos" />
+        <mat-error *ngIf="form.get('uapellidos')?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('uapellidos')?.hasError('soloLetras')">
+          No se permiten números, ni tildes
+        </mat-error>
+      </mat-form-field>
+      
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="uusername" />
+      </mat-form-field>
+
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput  formControlName="ucontraseña" />
+      </mat-form-field>
+      
+      <br>
 
       <mat-form-field>
         <mat-label>Fecha de Nacimiento</mat-label>
@@ -48,9 +73,6 @@
       <mat-form-field>
         <mat-label>Descripcion</mat-label>
         <textarea matInput formControlName="udescripcion"></textarea>
-        <mat-error *ngIf="form.get('udescripcion')?.hasError('required')">
-          Este campo es obligatorio
-        </mat-error>
       </mat-form-field>
 
       <br />
@@ -74,12 +96,6 @@
       <mat-form-field>
         <mat-label>Agencia</mat-label>
         <input matInput formControlName="uagencia" />
-        <mat-error *ngIf="form.get('uagencia')?.hasError('required')">
-          Este campo es obligatorio
-        </mat-error>
-        <mat-error *ngIf="form.get('uagencia')?.hasError('soloLetras')">
-          No se permiten números, ni tildes
-        </mat-error>
       </mat-form-field>
 
       <br />
@@ -104,6 +120,7 @@
           placeholder="Ejem. Universidad"
           formControlName="uestudios"
         />
+        
 
         <mat-error *ngIf="form.get('uestudios')?.hasError('required')">
           Este campo es obligatorio
@@ -112,7 +129,8 @@
           No se permiten números, ni tildes
         </mat-error>
       </mat-form-field>
-      <br />
+      
+      <br>
       <button mat-flat-button class="submit-btn">Registrar</button>
     </form>
   </div>
