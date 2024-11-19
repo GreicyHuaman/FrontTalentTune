@@ -12,6 +12,7 @@ import { ContratoService } from '../../../services/contrato.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
+import { BandaService } from '../../../services/banda.service';
 
 @Component({
   selector: 'app-creaeditacontrato',
@@ -29,16 +30,20 @@ import { UsuarioService } from '../../../services/usuario.service';
   templateUrl: './creaeditacontrato.component.html',
   styleUrl: './creaeditacontrato.component.css'
 })
-export class CreaeditacontratoComponent implements OnInit{
+export class CreaeditacontratoComponent implements OnInit {
   form: FormGroup;
   contrato: Contrato = new Contrato();
   usuarios: any[] = [];
+  bandas: any[] = [];
   mensaje: string = '';
+  isTalentoSelected: boolean = false;
+  isBandaSelected: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private contratoService: ContratoService,
     private usuarioService: UsuarioService,
+    private bandaService: BandaService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
@@ -49,31 +54,53 @@ export class CreaeditacontratoComponent implements OnInit{
       estado: ['', Validators.required],
       condiciones: [''],
       manager: ['', Validators.required],
-      talentoBanda: ['', Validators.required],
+      talento: [''],
+      banda: [''],
     });
   }
 
   ngOnInit(): void {
-    // Traer usuarios para los select
     this.usuarioService.list().subscribe((data) => {
       this.usuarios = data;
     });
+
+    this.bandaService.list().subscribe((data) => {
+      this.bandas = data;
+    });
   }
 
-  guardar() {
-    if (this.form.valid) {
-      const { fechaInicio, fechaFin, salario, estado, condiciones, manager, talentoBanda } =
-        this.form.value;
+  onTalentoSelect(): void {
+    this.isTalentoSelected = !!this.form.get('talento')?.value;
+    if (this.isTalentoSelected) {
+      this.form.get('banda')?.setValue(null); // Limpia el campo "Banda"
+      this.form.get('banda')?.disable(); // Deshabilita el select de Banda
+    } else {
+      this.form.get('banda')?.enable(); // Habilita el select de Banda si se quita el talento
+    }
+  }
 
-      // Validación personalizada
+  onBandaSelect(): void {
+    this.isBandaSelected = !!this.form.get('banda')?.value;
+    if (this.isBandaSelected) {
+      this.form.get('talento')?.setValue(null); // Limpia el campo "Talento"
+      this.form.get('talento')?.disable(); // Deshabilita el select de Talento
+    } else {
+      this.form.get('talento')?.enable(); // Habilita el select de Talento si se quita la banda
+    }
+  }
+
+  guardar(): void {
+    if (this.form.valid) {
+      const { fechaInicio, fechaFin, salario, estado, condiciones, manager, talento, banda } = this.form.value;
+
       if (new Date(fechaInicio) > new Date(fechaFin)) {
         this.mensaje = 'La fecha de inicio no puede ser mayor que la fecha de fin.';
         this.snackBar.open(this.mensaje, 'Cerrar', { duration: 3000 });
         return;
       }
 
-      if (manager === talentoBanda) {
-        this.mensaje = 'El manager y el talento/banda no pueden ser iguales.';
+      if (manager === talento) {
+        this.mensaje = 'El manager y el talento no pueden ser iguales.';
         this.snackBar.open(this.mensaje, 'Cerrar', { duration: 3000 });
         return;
       }
@@ -83,19 +110,22 @@ export class CreaeditacontratoComponent implements OnInit{
       this.contrato.salario = salario;
       this.contrato.estado = estado;
       this.contrato.condiciones = condiciones;
-      this.contrato.usuario.nombres = manager; // Asignamos el manager
-      this.contrato.banda.nombre = talentoBanda; // Asignamos el talento o banda
+      this.contrato.idUsuarioManager.idUsuario = manager;
+
+      if (talento) {
+        this.contrato.idUsuarioTalento.idUsuario = talento;
+      } else if (banda) {
+        this.contrato.banda.idBanda = banda;
+      }
 
       this.contratoService.insert(this.contrato).subscribe(() => {
         this.router.navigate(['/contratos']);
-        this.snackBar.open('Contrato guardado exitosamente.', 'Cerrar', {
-          duration: 3000,
-        });
+        this.snackBar.open('Contrato guardado exitosamente.', 'Cerrar', { duration: 3000 });
       });
     } else {
       this.mensaje = 'Por favor, complete todos los campos obligatorios.';
       this.snackBar.open(this.mensaje, 'Cerrar', { duration: 3000 });
     }
   }
-
 }
+
