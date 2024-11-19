@@ -24,7 +24,7 @@ import { Usuario } from '../../../models/Usuario';
     CommonModule,
   ],
   templateUrl: './creaeditarol.component.html',
-  styleUrls: ['./creaeditarol.component.css'], // Corrección: `styleUrls` en plural
+  styleUrls: ['./creaeditarol.component.css'], // Corrección: styleUrls en plural
 })
 export class CreaeditarolComponent implements OnInit {
   form: FormGroup = new FormGroup({});
@@ -97,7 +97,7 @@ export class CreaeditarolComponent implements OnInit {
           hrol: data.tipoRol,
           husuario: data.usuarios,
         });
-      });
-    }
-  }
+      });
+    }
+  }
 }

@@ -40,7 +40,8 @@ export class RolService {
   }
 
   update(Rol: Rol) {
-    return this.http.patch(this.url, Rol);
-  }
+    return this.http.patch(this.url, Rol);
+  }
+
 
 }

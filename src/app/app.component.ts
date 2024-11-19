@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,16 +29,20 @@ import { MatExpansionModule } from '@angular/material/expansion';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent{
   title = 'frontTalentTune';
   role: string = '';
+  username: string = '';
+
   constructor(private loginService: LoginService) {}
+
   cerrar() {
     sessionStorage.clear();
   }
 
   verificar() {
     this.role = this.loginService.showRole();
+    this.username = this.loginService.showUsername();
     return this.loginService.verificar();
   }
   

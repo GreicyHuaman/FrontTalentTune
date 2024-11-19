@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Usuario } from '../../../models/Usuario';
 import { RouterModule } from '@angular/router';
-import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 import { UsuarioService } from '../../../services/usuario.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarusuario',
@@ -14,16 +15,15 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatButton,
+    MatCardModule,
     RouterModule,
+    CommonModule
   ],
   templateUrl: './listarusuario.component.html',
   styleUrl: './listarusuario.component.css',
 })
 export class ListarusuarioComponent {
   dataSource: MatTableDataSource<Usuario> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9','rol', 'accion01', 'accion02'];
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private uS: UsuarioService) {}

@@ -36,6 +36,8 @@ import { ContenidoComponent } from './components/contenido/contenido.component';
 import { ListarcontenidoComponent } from './components/contenido/listarcontenido/listarcontenido.component';
 import { CreaeditacontenidoComponent } from './components/contenido/creaeditacontenido/creaeditacontenido.component';
 
+
+
 export const routes: Routes = [
   {
     path: 'homes',
