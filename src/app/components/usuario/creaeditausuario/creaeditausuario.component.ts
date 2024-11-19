@@ -90,7 +90,7 @@ export class CreaeditausuarioComponent implements OnInit {
       uapellidos: ['', [Validators.required, this.validarSoloLetras]],
       ufechaNacimiento: ['', [Validators.required, this.validarMayorDeEdad]],
       udescripcion: [''],
-      upais: ['', [Validators.required, this.validarSoloLetras]],
+      upais: ['', Validators.required],
       uagencia: [''],
       usexo: ['', Validators.required],
       uestudios: ['', [Validators.required, this.validarSoloLetras]],
@@ -142,7 +142,7 @@ export class CreaeditausuarioComponent implements OnInit {
         });
       }
     }
-    this.router.navigate(['reportes/reportemayorcontratos']);
+    this.router.navigate(['usuarios']);
   }
 
   init() {
