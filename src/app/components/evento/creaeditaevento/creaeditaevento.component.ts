@@ -44,8 +44,24 @@ export class CreaeditaeventoComponent implements OnInit {
   edicion: boolean = false;
 
   listatipos: { value: string; viewValue: string }[] = [
-    { value: 'Femenino', viewValue: 'Femenino' },
-    { value: 'Masculino', viewValue: 'Masculino' },
+    { value: 'Concierto', viewValue: 'Concierto' },
+    { value: 'Festival de música', viewValue: 'Festival de música' },
+    { value: 'Concurso', viewValue: 'Concurso' },
+    { value: 'Karaoke', viewValue: 'Karaoke' },
+    { value: 'Batallas', viewValue: 'Batallas' },
+    { value: 'Sesion de producción', viewValue: 'Sesion de producción' },
+    { value: 'Tributo', viewValue: 'Tributo' },
+  ];
+
+  listaDuracion: { value: string; viewValue: string }[] = [
+    { value: '60', viewValue: '1 hora' },
+    { value: '90', viewValue: '1 hora y 30 minutos' },
+    { value: '120', viewValue: '2 horas' },
+    { value: '150', viewValue: '2 horas y 30 minutos' },
+    { value: '180', viewValue: '3 horas' },
+    { value: '210', viewValue: '3 horas y 30 minutos' },
+    { value: '240', viewValue: '4 horas' },
+
   ];
   listaUsuarios: Usuario[] = [];
 
@@ -66,27 +82,19 @@ export class CreaeditaeventoComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       ucodigo: [''],
-      unombres: ['', [Validators.required, this.validarSoloLetras]],
+      unombres: ['', Validators.required],
       ufecha: ['', Validators.required],
-      utipo: ['', [Validators.required, this.validarSoloLetras]],
-      uduracion: ['', [Validators.required, this.validarSoloLetras]],
-      udescripcion: ['', Validators.required],
+      utipo: ['', Validators.required],
+      uduracion: ['', Validators.required],
+      udescripcion: [''],
       uusuario: ['', Validators.required],
     });
-    this.uS.list().subscribe(data=>{
-      this.listaUsuarios=data
-    })
-
-  }
-
-   
-  validarSoloLetras(control: AbstractControl): ValidationErrors | null {
-    const soloLetras = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
-    return soloLetras.test(control.value) ? null : { soloLetras: true };
+    this.uS.list().subscribe((data) => {
+      this.listaUsuarios = data;
+    });
   }
 
   aceptar(): void {
-    
     if (this.form.valid) {
       this.evento.idEvento = this.form.value.ucodigo;
       this.evento.nombre = this.form.value.unombres;

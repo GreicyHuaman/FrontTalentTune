@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-creaeditausuarioevento',
@@ -25,7 +26,9 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     CommonModule,
     MatDatepickerModule,
-    MatNativeDateModule,],
+    MatNativeDateModule,
+    MatCheckboxModule,
+  ],
   templateUrl: './creaeditausuarioevento.component.html',
   styleUrl: './creaeditausuarioevento.component.css'
 })
@@ -75,11 +78,6 @@ export class CreaeditausuarioeventoComponent implements OnInit{
       this.listaEventos=data
     })
 
-  }
-   
-  validarSoloLetras(control: AbstractControl): ValidationErrors | null {
-    const soloLetras = /^[A-Za-z\s]+$/; // ExpueSión regular para letras y espacios
-    return soloLetras.test(control.value) ? null : { soloLetras: true };
   }
 
   aceptar(): void {

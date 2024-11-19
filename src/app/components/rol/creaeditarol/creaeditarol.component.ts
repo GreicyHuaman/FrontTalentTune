@@ -1,6 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -31,7 +38,7 @@ export class CreaeditarolComponent implements OnInit {
   rol: Rol = new Rol();
   id: number = 0;
   edicion: boolean = false;
-  usuarios: Usuario[] = [];
+  listausuarios: Usuario[] = [];
 
   listaroles: { value: string; viewvalue: string }[] = [
     { value: 'TALENTO', viewvalue: 'TALENTO' },
@@ -43,30 +50,18 @@ export class CreaeditarolComponent implements OnInit {
     private rS: RolService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private usuarioService: UsuarioService,
-    private route: ActivatedRoute
+    private uS: UsuarioService,
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((data: Params) => {
-      this.id = data['id'];
-      this.edicion = this.id != null;
-      this.cargarUsuarios();
-      this.init();
-    });
-
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hrol: ['', Validators.required],
       husuario: ['', Validators.required],
     });
-  }
-
-  cargarUsuarios(): void {
-    this.usuarioService.list().subscribe(
-      (data) => (this.usuarios = data),
-      (error) => console.error('Error al cargar usuarios:', error)
-    );
+    this.uS.list().subscribe((data) => {
+      this.listausuarios = data;
+    });
   }
 
   aceptar(): void {
@@ -74,30 +69,12 @@ export class CreaeditarolComponent implements OnInit {
       this.rol.idRol = this.form.value.hcodigo;
       this.rol.tipoRol = this.form.value.hrol;
       this.rol.usuarios = this.form.value.husuario;
-
-      if (this.edicion) {
-        this.rS.update(this.rol).subscribe(() => {
-          this.rS.list().subscribe((roles) => this.rS.setlist(roles));
+      this.rS.insert(this.rol).subscribe((d) => {
+        this.uS.list().subscribe((d) => {
+          this.uS.setlist(d);
         });
-      } else {
-        this.rS.insert(this.rol).subscribe(() => {
-          this.rS.list().subscribe((roles) => this.rS.setlist(roles));
-        });
-      }
-
+      });
       this.router.navigate(['roles']);
     }
   }
-
-  init(): void {
-    if (this.edicion) {
-      this.rS.listId(this.id).subscribe((data) => {
-        this.form.patchValue({
-          hcodigo: data.idRol,
-          hrol: data.tipoRol,
-          husuario: data.usuarios,
-        });
-      });
-    }
-  }
 }

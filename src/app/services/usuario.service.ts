@@ -48,6 +48,11 @@ export class UsuarioService {
   update(usu:Usuario){
     return this.http.patch(this.url,usu);
   }
+
+  checkNombreUnico(nombre: string) {
+    return this.http.get<boolean>(`${this.url}/exists/${nombre}`);
+  }
+
   encontrarUltimoUsuario(): Observable<number> {
     return this.http.get<number>(`${this.url}/ultimoUsuario`);
   }

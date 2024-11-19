@@ -18,9 +18,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { RolService } from '../../../services/rol.service';
-import { CreaeditarolComponent } from '../../rol/creaeditarol/creaeditarol.component';
-import { Rol } from '../../../models/Rol';
 
 @Component({
   selector: 'app-creaeditausuario',
@@ -36,7 +33,7 @@ import { Rol } from '../../../models/Rol';
     MatNativeDateModule,
   ],
   templateUrl: './creaeditausuario.component.html',
-  styleUrl: './creaeditausuario.component.css',
+  styleUrls: ['./creaeditausuario.component.css'],
 })
 export class CreaeditausuarioComponent implements OnInit {
   form: FormGroup = new FormGroup({});
@@ -63,14 +60,18 @@ export class CreaeditausuarioComponent implements OnInit {
     { value: 'Uruguay', viewValue: 'Uruguay' },
     { value: 'Venezuela', viewValue: 'Venezuela' },
   ];
-  listaRoles: { }[] =[] 
+
+  listaEstudios: { value: string; viewValue: string }[] = [
+    { value: 'Secundaria Completa', viewValue: 'Secundaria Completa' },
+    { value: 'Tecnico', viewValue: 'Tecnico' },
+    { value: 'Universidad', viewValue: 'Universidad' },
+  ];
 
   constructor(
     private uS: UsuarioService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute,
-    private rS: RolService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -93,16 +94,13 @@ export class CreaeditausuarioComponent implements OnInit {
       uagencia: [''],
       usexo: ['', Validators.required],
       uestudios: ['', [Validators.required, this.validarSoloLetras]],
-      urol: ['', Validators.required],
-    });
-    this.rS.list().subscribe((data) => {
-      this.listaRoles  = data;
     });
   }
 
   validarMayorDeEdad(control: FormControl) {
     const fechaNacimiento = new Date(control.value);
-    const fechaLimite = new Date('2007-01-01');
+    const fechaLimite = new Date();
+    fechaLimite.setFullYear(fechaLimite.getFullYear() - 18);
 
     return fechaNacimiento <= fechaLimite ? null : { menorDeEdad: true };
   }

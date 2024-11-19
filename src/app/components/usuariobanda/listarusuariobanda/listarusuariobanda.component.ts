@@ -7,32 +7,26 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarusuariobanda',
   standalone: true,
-  imports: [MatTableModule,
+  imports: [
+    MatTableModule,
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    RouterModule,],
+    RouterModule,
+    CommonModule,
+  ],
   templateUrl: './listarusuariobanda.component.html',
-  styleUrl: './listarusuariobanda.component.css'
+  styleUrl: './listarusuariobanda.component.css',
 })
 export class ListarusuariobandaComponent implements OnInit {
-
   dataSource: MatTableDataSource<UsuarioBanda> = new MatTableDataSource();
-  displayedColumns: string[] = [
-    'c1',
-    'c2',
-    'c3',
-    'c4',
-    'c5',
-    'c6',
-    'accion01',
-    'accion02',
-  ];
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private ubS: UsuariobandaService) {}
@@ -48,16 +42,15 @@ export class ListarusuariobandaComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
-  ngAfterViewInit():void{
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  eliminar(id:number){
+  eliminar(id: number) {
     this.ubS.delete(id).subscribe((data) => {
       this.ubS.list().subscribe((data) => {
         this.ubS.setlist(data);
       });
     });
   }
-
 }

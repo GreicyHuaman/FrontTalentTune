@@ -4,7 +4,7 @@
     <form [formGroup]="form" (ngSubmit)="aceptar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
-        <input matInput placeholder="Ejemplo: 1" formControlName="hcodigo" />
+        <input matInput placeholder="Ejemplo: 1" formControlName="hcodigo" readonly/>
       </mat-form-field>
 
       <mat-form-field>
@@ -19,13 +19,14 @@
       <mat-form-field>
         <mat-label>Seleccionar Usuario</mat-label>
         <mat-select formControlName="husuario">
-          <mat-option *ngFor="let usuario of usuarios" [value]="usuario.idUsuario">
+          <mat-option *ngFor="let usuario of listausuarios" [value]="usuario.idUsuario">
             {{ usuario.nombres }} {{ usuario.apellidos }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <button mat-raised-button color="primary">Registrar</button>
+      <button mat-raised-button routerLink="/roles" class="custom-button">Cancelar</button>
     </form>
   </div>
 </div>
