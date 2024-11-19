@@ -31,7 +31,7 @@ export class ListarcontenidoComponent implements OnInit {
     'contenido',
     'likes',
     'acciones',
-  ]; // Columnas de la tabla
+  ];
 
   constructor(private contenidoService: ContenidoService) {}
 
@@ -55,7 +55,6 @@ export class ListarcontenidoComponent implements OnInit {
   }
 
   editar(id: number) {
-    // Redirige a la ruta de edición
     console.log('Redirigiendo a editar contenido con ID:', id);
   }
 

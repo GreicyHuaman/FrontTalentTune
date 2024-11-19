@@ -8,6 +8,7 @@ export class Contrato{
     salario:number=0.0
     estado:string=""
     condiciones:string=""
-    usuario: Usuario = new Usuario();
+    idUsuarioManager: Usuario = new Usuario();
+    idUsuarioTalento: Usuario = new Usuario();
     banda: Banda = new Banda();
 }

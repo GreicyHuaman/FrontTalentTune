@@ -63,6 +63,7 @@ export class CreaeditaeventoComponent implements OnInit {
     { value: '240', viewValue: '4 horas' },
 
   ];
+  
   listaUsuarios: Usuario[] = [];
 
   constructor(
@@ -100,25 +101,28 @@ export class CreaeditaeventoComponent implements OnInit {
       this.evento.nombre = this.form.value.unombres;
       this.evento.fecha = this.form.value.ufecha;
       this.evento.tipo = this.form.value.utipo;
-      this.evento.duracion = this.form.value.uduracion;
+      this.evento.duracion = +this.form.value.uduracion;
       this.evento.descripcion = this.form.value.udescripcion;
+      this.evento.usuario = new Usuario();
       this.evento.usuario.idUsuario = this.form.value.uusuario;
+  
       if (this.edicion) {
-        this.eS.update(this.evento).subscribe((data) => {
+        this.eS.update(this.evento).subscribe(() => {
           this.eS.list().subscribe((data) => {
             this.eS.setlist(data);
           });
         });
       } else {
-        this.eS.insert(this.evento).subscribe((d) => {
-          this.eS.list().subscribe((d) => {
-            this.eS.setlist(d);
+        this.eS.insert(this.evento).subscribe(() => {
+          this.eS.list().subscribe((data) => {
+            this.eS.setlist(data);
           });
         });
       }
+      this.router.navigate(['eventos']);
     }
-    this.router.navigate(['eventos']);
   }
+  
 
   init() {
     if (this.edicion) {

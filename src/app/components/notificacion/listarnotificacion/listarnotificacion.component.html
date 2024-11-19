@@ -4,14 +4,15 @@
   <div class="notificacion-container">
     <mat-card *ngFor="let element of dataSource.data" class="notificacion-card">
       <mat-card-content>
-        <h2>ID: {{element.idNotificacion}}</h2>
-        <p>{{element.detalle}}</p>
+        <h2>ID: {{ element.idNotificacion }}</h2>
+        <p>{{ element.detalle }}</p>
+        <p><strong>Evento:</strong> {{ element.evento?.nombre }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-icon-button (click)="eliminar(element.idNotificacion)" aria-label="Eliminar">
           <mat-icon style="color: #FF2126;">delete</mat-icon>
         </button>
-        <button mat-icon-button [routerLink]="['/notificaciones/ediciones',element.idNotificacion]" aria-label="Actualizar">
+        <button mat-icon-button [routerLink]="['/notificaciones/ediciones', element.idNotificacion]" aria-label="Actualizar">
           <mat-icon style="color: #03b6d6;">edit</mat-icon>
         </button>
       </mat-card-actions>
