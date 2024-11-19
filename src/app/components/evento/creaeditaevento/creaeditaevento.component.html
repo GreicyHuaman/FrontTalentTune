@@ -50,7 +50,7 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Duracion</mat-label>
-        <input matInput placeholder="una hora" formControlName="uduracion" />
+        <input matInput type="number" placeholder="Ej. 60" formControlName="uduracion" />
       </mat-form-field>
 
       <br />
@@ -66,18 +66,13 @@
         <mat-label>Organizador</mat-label>
         <mat-select formControlName="uusuario">
           @for (food of listaUsuarios; track food) {
-
           <mat-option [value]="food.idUsuario">{{ food.nombres }}</mat-option>
-
           }
         </mat-select>
       </mat-form-field>
 <br>
       <div class="buttonContainer">
         <button mat-raised-button>Registrar</button>
-        <button mat-raised-button color="warn" routerLink="/eventos">
-          Cancelar
-        </button>
       </div>
     </form>
   </div>
