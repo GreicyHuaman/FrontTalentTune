@@ -14,7 +14,7 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <mat-label>Nombre</mat-label>
+        <mat-label>Nombre del evento</mat-label>
         <input
           matInput
           placeholder="Ejem. evento1"
@@ -50,9 +50,13 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Duracion</mat-label>
-        <input matInput type="number" placeholder="Ej. 60" formControlName="uduracion" />
-      </mat-form-field>
 
+        <mat-select formControlName="uduracion">
+          @for (food of listaDuracion; track food) {
+          <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
       <br />
 
       <mat-form-field class="example-full-width">

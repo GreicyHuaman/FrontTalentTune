@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-listarusuarioevento',
@@ -14,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    MatButton,
+    MatCardModule,
     RouterModule,
     RouterLink,
     CommonModule],

@@ -38,9 +38,19 @@ export class CreaeditausuariobandaComponent {
   edicion: boolean = false;
 
   listarol: { value: string; viewValue: string }[] = [
-    { value: 'Cantante', viewValue: 'Cantante' },
+    { value: 'Vocalista', viewValue: 'Vocalista' },
+    { value: 'Corista ', viewValue: 'Corista ' },
     { value: 'Pianista', viewValue: 'Pianista' },
     { value: 'Guitarrista', viewValue: 'Guitarrista' },
+    { value: 'Bajista', viewValue: 'Bajista' },
+    { value: 'Baterista', viewValue: 'Baterista' },
+    { value: 'Percusionista', viewValue: 'Percusionista' },
+    { value: 'Trompetista', viewValue: 'Trompetista' },
+    { value: 'Saxofonista', viewValue: 'Saxofonista' },
+    { value: 'Compositor', viewValue: 'Compositor' },
+    { value: 'Director Musical', viewValue: 'Director Musical' },
+    { value: 'Productor Musical', viewValue: 'Productor Musical' },
+    { value: 'otro', viewValue: 'otro' },
   ];
   listaUsuarios: Usuario[] = [];
   listaBandas: Banda[] = [];
@@ -64,7 +74,7 @@ export class CreaeditausuariobandaComponent {
     this.form = this.formBuilder.group({
       ucodigo: [''],
       ufechaIngreso: ['', Validators.required],
-      ufechaSalida: ['', Validators.required],
+      ufechaSalida: [''],
       urol: ['', Validators.required],
       uusuario: ['', Validators.required],
       ubanda: ['', Validators.required],
@@ -76,12 +86,6 @@ export class CreaeditausuariobandaComponent {
       this.listaBandas = data;
     });
   }
-
-  validarSoloLetras(control: AbstractControl): ValidationErrors | null {
-    const soloLetras = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
-    return soloLetras.test(control.value) ? null : { soloLetras: true };
-  }
-
   aceptar(): void {
     if (this.form.valid) {
       this.ub.idUsuarioBanda = this.form.value.ucodigo;

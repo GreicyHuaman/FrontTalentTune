@@ -17,10 +17,17 @@
   
         <br />
         <mat-form-field class="example-full-width">
-          <mat-label>asistio</mat-label>
-          <input matInput placeholder="true" formControlName="uasistio" />
-        </mat-form-field>
+          <mat-label>Asistente</mat-label>
+          <mat-select formControlName="uusuario">
+            @for (food of listaUsuarios; track food) {
   
+            <mat-option [value]="food.idUsuario">{{ food.nombres }}</mat-option>
+  
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-checkbox formControlName="uasistio">¿Asistió? </mat-checkbox>
         <br />
   
         <mat-form-field class="example-full-width">
@@ -35,17 +42,7 @@
   
         <br />
   
-        <mat-form-field class="example-full-width">
-          <mat-label>Organizador</mat-label>
-          <mat-select formControlName="uusuario">
-            @for (food of listaUsuarios; track food) {
-  
-            <mat-option [value]="food.idUsuario">{{ food.nombres }}</mat-option>
-  
-            }
-          </mat-select>
-        </mat-form-field>
-        <br />
+        
   
         <mat-form-field class="example-full-width">
           <mat-label>Evento</mat-label>

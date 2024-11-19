@@ -3,7 +3,7 @@
   
     <div class="formContainer">
       <form [formGroup]="form" (submit)="aceptar()">
-        <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-form-field class="example-full-width" *ngIf="edicion" >
           <mat-label>Codigo</mat-label>
           <input
             matInput
@@ -11,6 +11,38 @@
             formControlName="ucodigo"
             readonly
           />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Integrante</mat-label>
+          <mat-select formControlName="uusuario">
+            @for (food of listaUsuarios; track food) {
+  
+            <mat-option [value]="food.idUsuario">{{ food.nombres }}</mat-option>
+  
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>participacion</mat-label>
+  
+          <mat-select formControlName="urol">
+            @for (food of listarol; track food) {
+            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Banda</mat-label>
+          <mat-select formControlName="ubanda">
+            @for (food of listaBandas; track food) {
+  
+            <mat-option [value]="food.idBanda">{{ food.nombre }}</mat-option>
+  
+            }
+          </mat-select>
         </mat-form-field>
         <br />
         <mat-form-field class="example-full-width">
@@ -25,7 +57,7 @@
         </mat-form-field>
         <br />
         <mat-form-field class="example-full-width">
-          <mat-label>Seleccione la fecha de salida</mat-label>
+          <mat-label>Seleccione la fecha de salida (opcional)</mat-label>
           <input matInput [matDatepicker]="picker2" formControlName="ufechaSalida" />
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -33,46 +65,7 @@
             [for]="picker2"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-  
-        
-        <br />
-
-        
-        <mat-form-field class="example-full-width">
-          <mat-label>participacion</mat-label>
-  
-          <mat-select formControlName="urol">
-            @for (food of listarol; track food) {
-            <mat-option [value]="food.value">{{ food.viewValue }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-  
-        <br />
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Organizador</mat-label>
-          <mat-select formControlName="uusuario">
-            @for (food of listaUsuarios; track food) {
-  
-            <mat-option [value]="food.idUsuario">{{ food.nombres }}</mat-option>
-  
-            }
-          </mat-select>
-        </mat-form-field>
-        <br />
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Banda</mat-label>
-          <mat-select formControlName="ubanda">
-            @for (food of listaBandas; track food) {
-  
-            <mat-option [value]="food.idBanda">{{ food.nombre }}</mat-option>
-  
-            }
-          </mat-select>
-        </mat-form-field>
+        </mat-form-field> 
         <br />
         <div class="buttonContainer">
           <button mat-raised-button>Registrar</button>

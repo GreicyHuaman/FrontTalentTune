@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { EventoService } from '../../../services/evento.service';
 import { Evento } from '../../../models/Evento';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-listarevento',
@@ -16,15 +17,14 @@ import { MatCardModule } from '@angular/material/card';
     MatPaginatorModule,
     MatCardModule,
     MatIconModule,
-    MatButton,
-    RouterModule,],
+    RouterModule,
+    CommonModule,
+  ],
   templateUrl: './listarevento.component.html',
-  styleUrl: './listarevento.component.css'
+  styleUrl: './listarevento.component.css',
 })
 export class ListareventoComponent {
-
   dataSource: MatTableDataSource<Evento> = new MatTableDataSource();
-  displayedColumns: string[] = ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'accion01', 'accion02'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -42,7 +42,7 @@ export class ListareventoComponent {
     });
   }
 
-  ngAfterViewInit():void {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
@@ -53,5 +53,4 @@ export class ListareventoComponent {
       });
     });
   }
-
 }
