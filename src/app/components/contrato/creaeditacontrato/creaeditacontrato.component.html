@@ -1,6 +1,6 @@
 <div>
   <h2>Registrar Contrato</h2>
-  <form [formGroup]="form" (ngSubmit)="guardar()">
+  <form [formGroup]="form" (Submit)="guardar()">
     <mat-form-field appearance="outline">
       <mat-label>Fecha de Inicio</mat-label>
       <input matInput [matDatepicker]="picker1" formControlName="fechaInicio" />
@@ -46,12 +46,15 @@
     <mat-form-field appearance="outline">
       <mat-label>Condiciones</mat-label>
       <textarea matInput formControlName="condiciones"></textarea>
+      <mat-error *ngIf="form.get('condiciones')?.hasError('required')">
+        Condiciones obligatorio.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Manager</mat-label>
       <mat-select formControlName="manager">
-        <mat-option *ngFor="let usuario of usuarios" [value]="usuario.idUsuario">
+        <mat-option *ngFor="let usuario of managers" [value]="usuario.idUsuario">
           {{ usuario.nombres }}
         </mat-option>
       </mat-select>
@@ -62,8 +65,9 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Talento</mat-label>
-      <mat-select formControlName="talento" (selectionChange)="onTalentoSelect()">
-        <mat-option *ngFor="let usuario of usuarios" [value]="usuario.idUsuario">
+      <mat-select formControlName="talento">
+        <mat-option [value]="null">Ninguno</mat-option>
+        <mat-option *ngFor="let usuario of talentos" [value]="usuario.idUsuario">
           {{ usuario.nombres }}
         </mat-option>
       </mat-select>
@@ -71,15 +75,14 @@
     
     <mat-form-field appearance="outline">
       <mat-label>Banda</mat-label>
-      <mat-select formControlName="banda" (selectionChange)="onBandaSelect()">
+      <mat-select formControlName="banda">
+        <mat-option [value]="null">Ninguna</mat-option>
         <mat-option *ngFor="let banda of bandas" [value]="banda.idBanda">
           {{ banda.nombre }}
         </mat-option>
       </mat-select>
-    </mat-form-field>    
+    </mat-form-field>           
 
-    <button mat-raised-button color="primary" type="submit">
-      Guardar
-    </button>
+    <button mat-raised-button color="primary" (click)="guardar()">Registrar</button>
   </form>
 </div>

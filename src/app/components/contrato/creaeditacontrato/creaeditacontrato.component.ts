@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -9,10 +9,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Contrato } from '../../../models/Contrato';
 import { ContratoService } from '../../../services/contrato.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { UsuarioService } from '../../../services/usuario.service';
 import { BandaService } from '../../../services/banda.service';
+import { Usuario } from '../../../models/Usuario';
+import { Banda } from '../../../models/Banda';
 
 @Component({
   selector: 'app-creaeditacontrato',
@@ -25,19 +26,23 @@ import { BandaService } from '../../../services/banda.service';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './creaeditacontrato.component.html',
-  styleUrl: './creaeditacontrato.component.css'
+  styleUrls: ['./creaeditacontrato.component.css'],
 })
+
 export class CreaeditacontratoComponent implements OnInit {
   form: FormGroup;
   contrato: Contrato = new Contrato();
-  usuarios: any[] = [];
+  talentos: any[] = [];
+  managers: any[] = [];
   bandas: any[] = [];
   mensaje: string = '';
   isTalentoSelected: boolean = false;
   isBandaSelected: boolean = false;
+  id: number = 0;
+  edicion: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,14 +50,15 @@ export class CreaeditacontratoComponent implements OnInit {
     private usuarioService: UsuarioService,
     private bandaService: BandaService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private route: ActivatedRoute
   ) {
     this.form = this.fb.group({
+      hcodigo: [''],
       fechaInicio: ['', Validators.required],
       fechaFin: ['', Validators.required],
       salario: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       estado: ['', Validators.required],
-      condiciones: [''],
+      condiciones: ['', Validators.required],
       manager: ['', Validators.required],
       talento: [''],
       banda: [''],
@@ -60,8 +66,18 @@ export class CreaeditacontratoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe((data: Params) => {
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+      this.init();
+    });
+
     this.usuarioService.list().subscribe((data) => {
-      this.usuarios = data;
+      this.talentos = data;
+    });
+
+    this.usuarioService.list().subscribe((data) => {
+      this.managers = data;
     });
 
     this.bandaService.list().subscribe((data) => {
@@ -92,40 +108,68 @@ export class CreaeditacontratoComponent implements OnInit {
   guardar(): void {
     if (this.form.valid) {
       const { fechaInicio, fechaFin, salario, estado, condiciones, manager, talento, banda } = this.form.value;
-
-      if (new Date(fechaInicio) > new Date(fechaFin)) {
-        this.mensaje = 'La fecha de inicio no puede ser mayor que la fecha de fin.';
-        this.snackBar.open(this.mensaje, 'Cerrar', { duration: 3000 });
-        return;
-      }
-
-      if (manager === talento) {
-        this.mensaje = 'El manager y el talento no pueden ser iguales.';
-        this.snackBar.open(this.mensaje, 'Cerrar', { duration: 3000 });
-        return;
-      }
-
+  
       this.contrato.fechaInicio = fechaInicio;
       this.contrato.fechaFin = fechaFin;
       this.contrato.salario = salario;
       this.contrato.estado = estado;
       this.contrato.condiciones = condiciones;
-      this.contrato.idUsuarioManager.idUsuario = manager;
-
+  
+      const managerUsuario = new Usuario();
+      managerUsuario.idUsuario = manager;
+      this.contrato.manager = managerUsuario;
+  
       if (talento) {
-        this.contrato.idUsuarioTalento.idUsuario = talento;
+        const talentoUsuario = new Usuario();
+        talentoUsuario.idUsuario = talento;
+        this.contrato.talento = talentoUsuario;
+        this.contrato.banda = null;
       } else if (banda) {
-        this.contrato.banda.idBanda = banda;
+        const bandaSeleccionada = new Banda();
+        bandaSeleccionada.idBanda = banda;
+        this.contrato.banda = bandaSeleccionada;
+        this.contrato.talento = null;
+      } else {
+        this.contrato.talento = null;
+        this.contrato.banda = null;
       }
+  
+      console.log('Contrato antes de guardar:', this.contrato);
+  
+      if (this.edicion) {
+        this.contratoService.update(this.contrato).subscribe(() => {
+          this.contratoService.list().subscribe((data) => {
+            this.contratoService.setlist(data);
+          });
+        });
+      } else {
+        this.contratoService.insert(this.contrato).subscribe(() => {
+          this.contratoService.list().subscribe((data) => {
+            this.contratoService.setlist(data);
+          });
+        });
+      }
+  
+      this.router.navigate(['contratos']);
+    }
+  }
+  
 
-      this.contratoService.insert(this.contrato).subscribe(() => {
-        this.router.navigate(['/contratos']);
-        this.snackBar.open('Contrato guardado exitosamente.', 'Cerrar', { duration: 3000 });
+  init() {
+    if (this.edicion) {
+      this.contratoService.listId(this.id).subscribe((data) => {
+        this.form.patchValue({
+          hcodigo: data.idContrato,
+          fechaInicio: data.fechaInicio,
+          fechaFin: data.fechaFin,
+          salario: data.salario,
+          estado: data.estado,
+          condiciones: data.condiciones,
+          manager: data.manager.idUsuario,
+          talento: data.talento?.idUsuario || '',
+          banda: data.banda?.idBanda || '',
+        });
       });
-    } else {
-      this.mensaje = 'Por favor, complete todos los campos obligatorios.';
-      this.snackBar.open(this.mensaje, 'Cerrar', { duration: 3000 });
     }
   }
 }
-

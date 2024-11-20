@@ -6,7 +6,7 @@
       <mat-card-content>
         <h2>ID: {{ element.idNotificacion }}</h2>
         <p>{{ element.detalle }}</p>
-        <p><strong>Evento:</strong> {{ element.evento?.nombre }}</p>
+        <p><strong>Evento:</strong> {{ element.evento.nombre }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-icon-button (click)="eliminar(element.idNotificacion)" aria-label="Eliminar">

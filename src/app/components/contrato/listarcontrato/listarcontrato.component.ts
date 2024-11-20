@@ -16,7 +16,7 @@ import { ContratoService } from '../../../services/contrato.service';
 })
 export class ListarcontratoComponent {
   dataSource: MatTableDataSource<Contrato> = new MatTableDataSource();
-  displayedColumns: string[] = ['idContrato', 'fechaInicio', 'fechaFin', 'salario', 'estado', 'condiciones', 'manager', 'usuario', 'banda', 'accion01', 'accion02'];
+  displayedColumns: string[] = ['idContrato', 'fechaInicio', 'fechaFin', 'salario', 'estado', 'condiciones', 'manager', 'talento', 'banda', 'accion01', 'accion02'];
 
   constructor(private contratoService: ContratoService) {}
 

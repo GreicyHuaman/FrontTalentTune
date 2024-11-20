@@ -39,4 +39,8 @@ export class ContratoService {
     return this.http.get<Contrato>(`${this.url}/${id}`)
   }
 
+  update(c:Contrato){
+    return this.http.patch(this.url,c);
+  }
+
 }
